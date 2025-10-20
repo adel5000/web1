@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الصفحة الرئيسية | متجر الكورسات</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* تنسيقات عامة للغة العربية */
+        body {
+            font-family: 'Cairo', sans-serif;
+            text-align: right;
+        }
+
+        /* تنسيقات الأعلام */
+        .flag-icon {
+            width: 24px;
+            height: 18px;
+            display: inline-block;
+            background-size: cover;
+            border-radius: 2px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+            margin: 0 2px;
+        }
+
+        .flag-sy {
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3 2"><rect width="3" height="2" fill="%23CE1126"/><rect width="3" height="1" fill="%23fff"/><rect y="1" width="3" height="1" fill="%23000000"/><path fill="%2300787E" d="M0 0h1v2H0z"/><path fill="%23fff" d="M.5 .5l.2 .1-.1-.2-.1.1z"/></svg>');
+        }
+
+        .flag-us {
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 30"><clipPath id="t"><path d="M30,15 h30 v15 z v15 h-30 z h-30 v-15 z v-15 h30 z"/></clipPath><path d="M0,0 v30 h60 v-30 z" fill="%23002169"/><path d="M0,0 L60,30 M60,0 L0,30" stroke="%23fff" stroke-width="6"/><path d="M0,0 L60,30 M60,0 L0,30" clip-path="url(%23t)" stroke="%23bf0a30" stroke-width="4"/><path d="M30,0 v30 M0,15 h60" stroke="%23fff" stroke-width="10"/><path d="M30,0 v30 M0,15 h60" stroke="%23bf0a30" stroke-width="6"/></svg>');
+        }
+
+        /* تنسيقات زر تغيير اللغة */
+        .language-switcher {
+            display: flex;
+            align-items: center;
+            margin-left: 15px;
+        }
+
+        .language-btn {
+            display: flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            border-radius: 4px;
+            padding: 5px 10px;
+            color: white;
+            transition: all 0.3s;
+            margin: 0 2px;
+            gap: 5px;
+        }
+
+        .language-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-1px);
+        }
+
+        .language-btn.active {
+            background: rgba(255, 255, 255, 0.4);
+            box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+        }
+
+        /* تنسيقات عامة للصفحة */
+        .hero-section {
+            background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%);
+            color: white;
+            padding: 80px 0;
+            margin-bottom: 40px;
+        }
+
+        .course-card {
+            transition: transform 0.3s;
+            margin-bottom: 20px;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .course-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .course-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+
+        .course-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .nav-item img {
+            height: 15px;
+            width: 20px;
+            object-fit: cover;
+            border-radius: 2px;
+        }
+
+        /* تخصيصات بسيطة للغة العربية */
+        .carousel-control-prev {
+            right: auto;
+            left: 0;
+        }
+
+        .carousel-control-next {
+            left: auto;
+            right: 0;
+        }
+
+        .carousel-indicators {
+            position: absolute;
+            bottom: 10px;
+            right: 0;
+            left: 0;
+        }
+
+        /* تنسيقات للفريق */
+        .team-card {
+            transition: transform 0.3s;
+        }
+
+        .team-card:hover {
+            transform: translateY(-5px);
+        }
+
+        /* تنسيقات الفوتر */
+        footer {
+            background: linear-gradient(135deg, #0d6efd, #6610f2) !important;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ====== Navbar ====== -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#">
+                <img src="../assets/img/logo.jpg" alt="شعار الموقع" height="40" class="me-2">
+                <span class="site-name" data-translate="site_name">متجر الكورسات</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a href="index.html" class="nav-link active" data-translate="home">الرئيسية</a>
+                    </li>
+                    <li class="nav-item"><a href="courses.html" class="nav-link" data-translate="courses">الكورسات</a>
+                    </li>
+                    <li class="nav-item"><a href="about.html" class="nav-link" data-translate="about">من نحن</a></li>
+                    <li class="nav-item"><a href="contact.html" class="nav-link" data-translate="contact">اتصل بنا</a>
+                    </li>
+
+                    <!-- أزرار تغيير اللغة -->
+                    <li class="nav-item">
+                        <div class="language-switcher">
+                            <button class="language-btn active" data-lang="ar">
+                                <img src="../assets/img/sy.webp" alt="العربية">
+                                <span class="d-none d-sm-inline">العربية</span>
+                            </button>
+                            <button class="language-btn" data-lang="en">
+                                <img src="../assets/img/usa.jpg" alt="English">
+                                <span class="d-none d-sm-inline">English</span>
+                            </button>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ====== Hero Slider ====== -->
+    <section id="hero" class="mt-4">
+        <div id="featuredCourses" class="carousel slide container" data-bs-ride="carousel">
+            <div class="carousel-inner rounded-4 shadow">
+                <!-- ====== Featured Courses Slider ====== -->
+                <section class="container mt-5">
+                    <h2 class="text-center mb-4 fw-bold" data-translate="featured_courses">الكورسات المميزة</h2>
+
+                    <div id="heroCoursesCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
+                        <div class="carousel-inner rounded-4 shadow-lg">
+
+                            <!-- Slide 1 -->
+                            <div class="carousel-item active">
+                                <a href="course.html?id=1">
+                                    <img src="../assets/img/course1.jpg" class="d-block w-100" alt="تطوير الويب">
+                                    <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded-3">
+                                        <h5 data-translate="web_development">تطوير الويب</h5>
+                                        <p data-translate="web_development_desc">بناء مواقع الويب من الصفر</p>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <!-- Slide 2 -->
+                            <div class="carousel-item">
+                                <a href="course.html">
+                                    <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=400"
+                                        class="d-block w-100" alt="الذكاء الاصطناعي">
+                                    <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded-3">
+                                        <h5 data-translate="artificial_intelligence">الذكاء الاصطناعي</h5>
+                                        <p data-translate="ai_desc">تعلم تقنيات الذكاء الاصطناعي</p>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <!-- Slide 3 -->
+                            <div class="carousel-item">
+                                <a href="course.html">
+                                    <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=400"
+                                        class="d-block w-100" alt="إدارة المشاريع">
+                                    <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded-3">
+                                        <h5 data-translate="project_management">إدارة المشاريع</h5>
+                                        <p data-translate="project_management_desc">تخطيط وتنفيذ المشاريع</p>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <!-- Slide 4 -->
+                            <div class="carousel-item">
+                                <a href="course.html">
+                                    <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=400"
+                                        class="d-block w-100" alt="تصميم واجهات المستخدم">
+                                    <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded-3">
+                                        <h5 data-translate="ui_ux_design">تصميم واجهات المستخدم</h5>
+                                        <p data-translate="ui_ux_desc">إنشاء واجهات مستخدم حديثة</p>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <!-- Slide 5 -->
+                            <div class="carousel-item">
+                                <a href="course.html">
+                                    <img src="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=400"
+                                        class="d-block w-100" alt="بايثون لعلوم البيانات">
+                                    <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded-3">
+                                        <h5 data-translate="python_data_science">بايثون لعلوم البيانات</h5>
+                                        <p data-translate="python_data_desc">إتقان تحليل البيانات</p>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <!-- Slide 6 -->
+                            <div class="carousel-item">
+                                <a href="course.html">
+                                    <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=400"
+                                        class="d-block w-100" alt="التعلم الآلي">
+                                    <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded-3">
+                                        <h5 data-translate="machine_learning">التعلم الآلي</h5>
+                                        <p data-translate="ml_desc">تدريب نماذج التعلم الآلي بسهولة</p>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <!-- Slide 7 -->
+                            <div class="carousel-item">
+                                <a href="course.html">
+                                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400"
+                                        class="d-block w-100" alt="تحليل البيانات">
+                                    <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded-3">
+                                        <h5 data-translate="data_analytics">تحليل البيانات</h5>
+                                        <p data-translate="data_analytics_desc">استكشاف أدوات البيانات الضخمة</p>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <!-- Slide 8 -->
+                            <div class="carousel-item">
+                                <a href="course.html">
+                                    <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=400"
+                                        class="d-block w-100" alt="الأمن السيبراني">
+                                    <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded-3">
+                                        <h5 data-translate="cybersecurity">الأمن السيبراني</h5>
+                                        <p data-translate="cybersecurity_desc">حماية الأنظمة والبيانات</p>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <!-- Slide 9 -->
+                            <div class="carousel-item">
+                                <a href="course.html">
+                                    <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=400"
+                                        class="d-block w-100" alt="تطوير تطبيقات الجوال">
+                                    <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded-3">
+                                        <h5 data-translate="mobile_app_dev">تطوير تطبيقات الجوال</h5>
+                                        <p data-translate="mobile_app_desc">بناء تطبيقات أندرويد وآيفون</p>
+                                    </div>
+                                </a>
+                            </div>
+
+                        </div>
+
+                        <!-- Controls -->
+                        <button class="carousel-control-prev" type="button" data-bs-target="#heroCoursesCarousel"
+                            data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon"></span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#heroCoursesCarousel"
+                            data-bs-slide="next">
+                            <span class="carousel-control-next-icon"></span>
+                        </button>
+
+                        <!-- Indicators -->
+                        <div class="carousel-indicators">
+                            <button type="button" data-bs-target="#heroCoursesCarousel" data-bs-slide-to="0"
+                                class="active"></button>
+                            <button type="button" data-bs-target="#heroCoursesCarousel" data-bs-slide-to="1"></button>
+                            <button type="button" data-bs-target="#heroCoursesCarousel" data-bs-slide-to="2"></button>
+                            <button type="button" data-bs-target="#heroCoursesCarousel" data-bs-slide-to="3"></button>
+                            <button type="button" data-bs-target="#heroCoursesCarousel" data-bs-slide-to="4"></button>
+                            <button type="button" data-bs-target="#heroCoursesCarousel" data-bs-slide-to="5"></button>
+                            <button type="button" data-bs-target="#heroCoursesCarousel" data-bs-slide-to="6"></button>
+                            <button type="button" data-bs-target="#heroCoursesCarousel" data-bs-slide-to="7"></button>
+                            <button type="button" data-bs-target="#heroCoursesCarousel" data-bs-slide-to="8"></button>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== Categories Section ====== -->
+    <!-- ====== Quick Categories / Filter Buttons ====== -->
+    <section class="categories container text-center my-5">
+        <h2 class="mb-4 fw-bold" data-translate="quick_categories">التصنيفات السريعة</h2>
+        <div class="d-flex flex-wrap justify-content-center gap-2">
+            <button class="btn btn-outline-primary active" data-filter="all" data-translate="all">الكل</button>
+            <button class="btn btn-outline-primary" data-filter="programming"
+                data-translate="programming">البرمجة</button>
+            <button class="btn btn-outline-primary" data-filter="design" data-translate="design">التصميم</button>
+            <button class="btn btn-outline-primary" data-filter="business" data-translate="business">الأعمال</button>
+            <button class="btn btn-outline-primary" data-filter="languages" data-translate="languages">اللغات</button>
+        </div>
+    </section>
+
+    <!-- ====== All Courses (Single Section) ====== -->
+    <section class="courses-section container my-5">
+        <div class="course-grid">
+            <!-- Programming -->
+            <div class="course-card" data-category="programming">
+                <img src="https://images.unsplash.com/photo-1581090700227-1e37b190418e" alt="تطوير الويب">
+                <div class="p-3">
+                    <h6 data-translate="full_stack_web">تطوير الويب الشامل</h6>
+                    <p class="text-muted" data-translate="full_stack_desc">بناء مواقع ويب حديثة باستخدام HTML وCSS وJS
+                    </p>
+                </div>
+            </div>
+            <div class="course-card" data-category="programming">
+                <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c" alt="بايثون">
+                <div class="p-3">
+                    <h6 data-translate="python_programming">برمجة بايثون</h6>
+                    <p class="text-muted" data-translate="python_desc">ابدأ البرمجة باستخدام بايثون للبيانات والذكاء
+                        الاصطناعي</p>
+                </div>
+            </div>
+
+            <!-- Design -->
+            <div class="course-card" data-category="design">
+                <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c" alt="التصميم">
+                <div class="p-3">
+                    <h6 data-translate="graphic_design">أساسيات التصميم الجرافيكي</h6>
+                    <p class="text-muted" data-translate="graphic_design_desc">تعلم أساسيات الألوان والتخطيط والطباعة
+                    </p>
+                </div>
+            </div>
+            <div class="course-card" data-category="design">
+                <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c" alt="واجهات المستخدم">
+                <div class="p-3">
+                    <h6 data-translate="ui_ux_masterclass">دورة متقدمة في تصميم واجهات المستخدم</h6>
+                    <p class="text-muted" data-translate="ui_ux_master_desc">تصميم تجارب رقمية باستخدام Figma</p>
+                </div>
+            </div>
+
+            <!-- Business -->
+            <div class="course-card" data-category="business">
+                <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4" alt="الأعمال">
+                <div class="p-3">
+                    <h6 data-translate="startup_fundamentals">أساسيات الشركات الناشئة</h6>
+                    <p class="text-muted" data-translate="startup_desc">حول الأفكار إلى شركات ناجحة</p>
+                </div>
+            </div>
+            <div class="course-card" data-category="business">
+                <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4" alt="التسويق">
+                <div class="p-3">
+                    <h6 data-translate="digital_marketing">التسويق الرقمي</h6>
+                    <p class="text-muted" data-translate="marketing_desc">تعلم تحسين محركات البحث والإعلانات والترويج
+                        عبر الإنترنت</p>
+                </div>
+            </div>
+
+            <!-- Languages -->
+            <div class="course-card" data-category="languages">
+                <img src="https://images.unsplash.com/photo-1596495577886-d920f1fb7238" alt="الإنجليزية">
+                <div class="p-3">
+                    <h6 data-translate="english_beginners">الإنجليزية للمبتدئين</h6>
+                    <p class="text-muted" data-translate="english_desc">حسّن مهارات التواصل لديك بسهولة</p>
+                </div>
+            </div>
+            <div class="course-card" data-category="languages">
+                <img src="https://images.unsplash.com/photo-1596495577886-d920f1fb7238" alt="الفرنسية">
+                <div class="p-3">
+                    <h6 data-translate="french_basics">أساسيات الفرنسية</h6>
+                    <p class="text-muted" data-translate="french_desc">تحدث وافهم الفرنسية بثقة</p>
+                </div>
+            </div>
+
+            <!-- Extra mixed -->
+            <div class="course-card" data-category="programming">
+                <img src="https://images.unsplash.com/photo-1596495577886-d920f1fb7238" alt="سي بلس بلس">
+                <div class="p-3">
+                    <h6 data-translate="mastering_cpp">إتقان لغة C++</h6>
+                    <p class="text-muted" data-translate="cpp_desc">افهم البرمجة كائنية التوجه والخوارزميات بعمق</p>
+                </div>
+            </div>
+            <div class="course-card" data-category="business">
+                <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d" alt="القيادة">
+                <div class="p-3">
+                    <h6 data-translate="leadership_skills">مهارات القيادة</h6>
+                    <p class="text-muted" data-translate="leadership_desc">طور مهارات التواصل والتأثير لديك</p>
+                </div>
+            </div>
+            <div class="course-card" data-category="design">
+                <img src="https://images.unsplash.com/photo-1581090700227-1e37b190418e" alt="الرسوم المتحركة">
+                <div class="p-3">
+                    <h6 data-translate="motion_graphics">الرسوم المتحركة</h6>
+                    <p class="text-muted" data-translate="motion_desc">أنيمي التصاميم باستخدام After Effects</p>
+                </div>
+            </div>
+            <div class="course-card" data-category="languages">
+                <img src="https://images.unsplash.com/photo-1607746882042-944635dfe10e" alt="الإسبانية">
+                <div class="p-3">
+                    <h6 data-translate="spanish_language">اللغة الإسبانية</h6>
+                    <p class="text-muted" data-translate="spanish_desc">تعلم التحدث بطلاقة بالإسبانية</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ====== Latest Courses Grid ====== -->
+    <section class="latest-courses container my-5">
+        <h2 class="text-center mb-4 fw-bold" data-translate="latest_courses">أحدث الكورسات</h2>
+        <div class="course-grid">
+            <!-- Course Cards -->
+            <div class="course-card" data-category="programming">
+                <a href="course.html"><img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=600"
+                        alt="course1"></a>
+                <div class="p-3">
+                    <h6 data-translate="full_web_dev">تطوير الويب الشامل</h6>
+                    <p class="text-muted" data-translate="full_web_desc">بناء مواقع ويب متجاوبة خطوة بخطوة</p>
+                </div>
+            </div>
+            <div class="course-card" data-category="ai">
+                <a href="course.html"><img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=600"
+                        alt="course2"></a>
+                <div class="p-3">
+                    <h6 data-translate="ai_beginners">الذكاء الاصطناعي للمبتدئين</h6>
+                    <p class="text-muted" data-translate="ai_beginners_desc">استكشاف أساسيات الذكاء الاصطناعي</p>
+                </div>
+            </div>
+            <div class="course-card" data-category="design">
+                <a href="course.html"><img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=600"
+                        alt="course4"></a>
+                <div class="p-3">
+                    <h6 data-translate="ui_ux_fundamentals">أساسيات تصميم واجهات المستخدم</h6>
+                    <p class="text-muted" data-translate="ui_ux_fundamentals_desc">تصميم واجهات سهلة الاستخدام</p>
+                </div>
+            </div>
+            <div class="course-card" data-category="business">
+                <a href="course.html"><img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=600"
+                        alt="course5"></a>
+                <div class="p-3">
+                    <h6 data-translate="digital_marketing_strategy">استراتيجية التسويق الرقمي</h6>
+                    <p class="text-muted" data-translate="marketing_strategy_desc">عزز نشاطك التجاري عبر الإنترنت</p>
+                </div>
+            </div>
+            <div class="course-card" data-category="ai">
+                <a href="course.html"><img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=600"
+                        alt="course8"></a>
+                <div class="p-3">
+                    <h6 data-translate="ml_crash_course">دورة مكثفة في التعلم الآلي</h6>
+                    <p class="text-muted" data-translate="ml_crash_desc">تعلم خوارزميات التعلم الآلي بسهولة</p>
+                </div>
+            </div>
+            <div class="course-card" data-category="programming">
+                <a href="course.html"><img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=600"
+                        alt="course10"></a>
+                <div class="p-3">
+                    <h6 data-translate="mobile_app_development">تطوير تطبيقات الجوال</h6>
+                    <p class="text-muted" data-translate="mobile_app_development_desc">أنشئ تطبيقات أندرويد وآيفون</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ====== Our Team Section ====== -->
+    <section class="team-section container my-5 text-center">
+        <h2 class="fw-bold mb-4" data-translate="our_team">فريق التطوير لدينا</h2>
+        <p class="text-muted mb-5" data-translate="team_description">تعرف على المطورين المتحمسين الذين بنوا هذه المنصة
+        </p>
+
+        <div class="row g-4">
+            <!-- Developer 1 -->
+            <div class="col-6 col-md-4 col-lg-3">
+                <div class="team-card p-3 rounded-4 shadow-sm h-100">
+                    <img src="https://randomuser.me/api/portraits/men/12.jpg" class="rounded-circle mb-3" width="100"
+                        height="100" alt="محمد عادل">
+                    <h6 class="fw-bold mb-1">محمد عادل</h6>
+                    <p class="text-primary mb-1" data-translate="full_stack_developer">مطور Full Stack</p>
+                    <small class="text-muted">ID: #001</small>
+                </div>
+            </div>
+
+            <!-- Developer 2 -->
+            <div class="col-6 col-md-4 col-lg-3">
+                <div class="team-card p-3 rounded-4 shadow-sm h-100">
+                    <img src="https://randomuser.me/api/portraits/women/21.jpg" class="rounded-circle mb-3" width="100"
+                        height="100" alt="سارة إبراهيم">
+                    <h6 class="fw-bold mb-1">سارة إبراهيم</h6>
+                    <p class="text-primary mb-1" data-translate="frontend_developer">مطور واجهات أمامية</p>
+                    <small class="text-muted">ID: #002</small>
+                </div>
+            </div>
+
+            <!-- Developer 3 -->
+            <div class="col-6 col-md-4 col-lg-3">
+                <div class="team-card p-3 rounded-4 shadow-sm h-100">
+                    <img src="https://randomuser.me/api/portraits/men/31.jpg" class="rounded-circle mb-3" width="100"
+                        height="100" alt="أحمد فارس">
+                    <h6 class="fw-bold mb-1">أحمد فارس</h6>
+                    <p class="text-primary mb-1" data-translate="backend_engineer">مهندس Backend</p>
+                    <small class="text-muted">ID: #003</small>
+                </div>
+            </div>
+
+            <!-- Developer 4 -->
+            <div class="col-6 col-md-4 col-lg-3">
+                <div class="team-card p-3 rounded-4 shadow-sm h-100">
+                    <img src="https://randomuser.me/api/portraits/men/41.jpg" class="rounded-circle mb-3" width="100"
+                        height="100" alt="عمر خالد">
+                    <h6 class="fw-bold mb-1">عمر خالد</h6>
+                    <p class="text-primary mb-1" data-translate="database_specialist">أخصائي قواعد بيانات</p>
+                    <small class="text-muted">ID: #004</small>
+                </div>
+            </div>
+
+            <!-- Developer 5 -->
+            <div class="col-6 col-md-4 col-lg-3">
+                <div class="team-card p-3 rounded-4 shadow-sm h-100">
+                    <img src="https://randomuser.me/api/portraits/women/51.jpg" class="rounded-circle mb-3" width="100"
+                        height="100" alt="لينا يوسف">
+                    <h6 class="fw-bold mb-1">لينا يوسف</h6>
+                    <p class="text-primary mb-1" data-translate="ui_ux_designer">مصمم واجهات المستخدم</p>
+                    <small class="text-muted">ID: #005</small>
+                </div>
+            </div>
+
+            <!-- Developer 6 -->
+            <div class="col-6 col-md-4 col-lg-3">
+                <div class="team-card p-3 rounded-4 shadow-sm h-100">
+                    <img src="https://randomuser.me/api/portraits/men/61.jpg" class="rounded-circle mb-3" width="100"
+                        height="100" alt="حسن صالح">
+                    <h6 class="fw-bold mb-1">حسن صالح</h6>
+                    <p class="text-primary mb-1" data-translate="devops_engineer">مهندس DevOps</p>
+                    <small class="text-muted">ID: #006</small>
+                </div>
+            </div>
+
+            <!-- Developer 7 -->
+            <div class="col-6 col-md-4 col-lg-3">
+                <div class="team-card p-3 rounded-4 shadow-sm h-100">
+                    <img src="https://randomuser.me/api/portraits/women/71.jpg" class="rounded-circle mb-3" width="100"
+                        height="100" alt="نور هادي">
+                    <h6 class="fw-bold mb-1">نور هادي</h6>
+                    <p class="text-primary mb-1" data-translate="qa_tester">مسؤول ضمان الجودة والاختبار</p>
+                    <small class="text-muted">ID: #007</small>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== Footer ====== -->
+    <footer class="text-light py-5 mt-5">
+        <div class="container">
+            <div class="row text-center text-md-start">
+                <!-- Logo & About -->
+                <div class="col-md-4 mb-4">
+                    <h4 class="fw-bold mb-3"><i class="fas fa-graduation-cap me-2"></i><span
+                            data-translate="site_name">متجر الكورسات</span></h4>
+                    <p data-translate="footer_description">اكتشف كورسات عالية الجودة عبر الإنترنت في البرمجة والتصميم
+                        والأعمال. تعلم بسرعتك الخاصة مع أفضل المدربين حول العالم.</p>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="col-md-4 mb-4">
+                    <h5 class="fw-bold mb-3" data-translate="quick_links">روابط سريعة</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="index.html" class="text-light text-decoration-none d-block mb-2"
+                                data-translate="home">الرئيسية</a></li>
+                        <li><a href="courses.html" class="text-light text-decoration-none d-block mb-2"
+                                data-translate="courses">الكورسات</a></li>
+                        <li><a href="about.html" class="text-light text-decoration-none d-block mb-2"
+                                data-translate="about">من نحن</a></li>
+                        <li><a href="contact.html" class="text-light text-decoration-none d-block mb-2"
+                                data-translate="contact">اتصل بنا</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="col-md-4 mb-4">
+                    <h5 class="fw-bold mb-3" data-translate="get_in_touch">تواصل معنا</h5>
+                    <p><i class="fas fa-map-marker-alt me-2"></i><span data-translate="address">شارع التعلم 123، مدينة
+                            المعرفة، سوريا</span></p>
+                    <p><i class="fas fa-envelope me-2"></i>support@coursesstore.com</p>
+                    <p><i class="fas fa-phone me-2"></i>+963 555 123 456</p>
+                    <div class="social-icons mt-3">
+                        <a href="#" class="text-light me-3 fs-5"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="text-light me-3 fs-5"><i class="fab fa-x-twitter"></i></a>
+                        <a href="#" class="text-light me-3 fs-5"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-light fs-5"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="border-light">
+            <div class="text-center small mt-3">
+                <p class="mb-0" data-translate="copyright">© 2025 متجر الكورسات. جميع الحقوق محفوظة. | صمم بواسطة
+                    <strong>محمد عادل وتد</strong>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/lang.js"></script>
+</body>
+
+</html>

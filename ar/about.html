@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Courses Store</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700;800;900&family=Tajawal:wght@200;300;400;500;700;800;900&display=swap"
+        rel="stylesheet">
+
+
+    <style>
+        body {
+            font-family: "Cairo";
+        }
+
+        /* Existing styles */
+        .scroll-btn {
+            position: fixed;
+            bottom: 80px;
+            right: 25px;
+            width: 45px;
+            height: 45px;
+            background-color: #0d6efd;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            z-index: 1050;
+            display: none;
+        }
+
+        #scrollDownBtn {
+            bottom: 25px;
+            background-color: #198754;
+        }
+
+        .scroll-btn:hover {
+            transform: scale(1.1);
+            opacity: 0.9;
+        }
+
+        .dark-mode-btn {
+            position: fixed;
+            bottom: 135px;
+            right: 25px;
+            width: 45px;
+            height: 45px;
+            background-color: #6c757d;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            z-index: 1050;
+        }
+
+        .dark-mode-btn:hover {
+            transform: scale(1.1);
+            opacity: 0.9;
+        }
+
+        /* ===== Dark Mode Styling ===== */
+        body.dark-mode {
+            background-color: #121212 !important;
+            color: #eaeaea;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        body.dark-mode .navbar {
+            background-color: #1f1f1f !important;
+        }
+
+        body.dark-mode .card,
+        body.dark-mode .course-card,
+        body.dark-mode footer,
+        body.dark-mode .team-card,
+        body.dark-mode .policy-card {
+            background-color: #1c1c1c !important;
+            color: #eaeaea !important;
+        }
+
+        body.dark-mode .btn-outline-primary {
+            color: #0d6efd;
+            border-color: #0d6efd;
+        }
+
+        body.dark-mode .btn-outline-primary:hover {
+            background-color: #0d6efd;
+            color: #fff;
+        }
+
+        body.dark-mode .text-muted {
+            color: #bdbdbd !important;
+        }
+
+        body.dark-mode a {
+            color: #9cc1ff;
+        }
+
+        /* Additional page styles */
+        .hero-section {
+            background: linear-gradient(135deg, #0d6efd, #6610f2);
+            color: white;
+            padding: 80px 0;
+            margin-bottom: 60px;
+        }
+
+        .mission-vision-section {
+            padding: 60px 0;
+        }
+
+        .mission-card,
+        .vision-card {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .mission-card:hover,
+        .vision-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .team-section {
+            padding: 60px 0;
+        }
+
+        .team-card {
+            transition: transform 0.3s ease;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .team-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .policies-section {
+            padding: 60px 0;
+        }
+
+        .policy-card {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .policy-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .icon-container {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+        }
+
+        .mission-icon {
+            background-color: rgba(13, 110, 253, 0.1);
+            color: #0d6efd;
+        }
+
+        .vision-icon {
+            background-color: rgba(102, 16, 242, 0.1);
+            color: #6610f2;
+        }
+
+        .policy-icon {
+            background-color: rgba(25, 135, 84, 0.1);
+            color: #198754;
+        }
+
+        .values-section {
+            padding: 60px 0;
+        }
+
+        .value-card {
+            text-align: center;
+            padding: 30px 20px;
+            border-radius: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        .value-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .value-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #0d6efd;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- ====== Navbar ====== -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#">
+                <img src="assets/img/logo.jpg" alt="Logo" height="40" class="me-2"> Courses Store
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="courses.html" class="nav-link">Courses</a></li>
+                    <li class="nav-item"><a href="about.html" class="nav-link active">About</a></li>
+                    <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ====== Hero Section ====== -->
+    <section class="hero-section">
+        <div class="container text-center">
+            <h1 class="display-4 fw-bold mb-4">About Us</h1>
+            <p class="lead mb-0">We are a leading educational platform dedicated to empowering individuals through
+                high-quality education</p>
+        </div>
+    </section>
+
+    <!-- ====== Mission & Vision Section ====== -->
+    <section class="mission-vision-section">
+        <div class="container">
+            <div class="row g-5">
+                <!-- Mission -->
+                <div class="col-lg-6">
+                    <div class="mission-card p-4 h-100">
+                        <div class="icon-container mission-icon">
+                            <i class="fas fa-bullseye fa-2x"></i>
+                        </div>
+                        <h3 class="text-center mb-4">Our Mission</h3>
+                        <p class="text-muted">We believe that quality education should be accessible to everyone,
+                            regardless of their geographical location or financial circumstances. Our platform aims to
+                            provide high-quality educational content that keeps pace with the latest developments in
+                            programming, design, and business fields.</p>
+                        <p class="text-muted">We strive to empower individuals to acquire the necessary skills to
+                            achieve their professional and personal goals, providing an interactive learning environment
+                            that encourages creativity and excellence.</p>
+                    </div>
+                </div>
+
+                <!-- Vision -->
+                <div class="col-lg-6">
+                    <div class="vision-card p-4 h-100">
+                        <div class="icon-container vision-icon">
+                            <i class="fas fa-eye fa-2x"></i>
+                        </div>
+                        <h3 class="text-center mb-4">Our Vision</h3>
+                        <p class="text-muted">We aspire to be the leading educational platform in the region,
+                            contributing to building a generation of creative professionals capable of leading positive
+                            change in their communities.</p>
+                        <p class="text-muted">We look forward to creating an interactive educational community that
+                            connects learners with experts, promotes a culture of continuous learning and knowledge
+                            exchange, and contributes to the development of the digital economy and empowering
+                            individuals to achieve their full potential.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== Our Values Section ====== -->
+    <section class="values-section bg-light">
+        <div class="container">
+            <h2 class="text-center fw-bold mb-5">Our Core Values</h2>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="value-card bg-white shadow-sm h-100">
+                        <div class="value-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <h4>Quality Education</h4>
+                        <p class="text-muted">We are committed to providing the highest quality educational content that
+                            meets international standards.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="value-card bg-white shadow-sm h-100">
+                        <div class="value-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h4>Community Focus</h4>
+                        <p class="text-muted">Building a supportive learning community where students can connect,
+                            collaborate, and grow together.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="value-card bg-white shadow-sm h-100">
+                        <div class="value-icon">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <h4>Innovation</h4>
+                        <p class="text-muted">Continuously improving our platform and course offerings with the latest
+                            educational technologies and methodologies.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== Our Team Section ====== -->
+    <section class="team-section container my-5 text-center">
+        <h2 class="fw-bold mb-4">Our Development Team</h2>
+        <p class="text-muted mb-5">Meet the passionate developers who built this platform.</p>
+
+        <div class="row g-4">
+            <!-- Developer 1 -->
+            <div class="col-6 col-md-4 col-lg-3">
+                <div class="team-card p-3 rounded-4 shadow-sm h-100">
+                    <img src="https://randomuser.me/api/portraits/men/12.jpg" class="rounded-circle mb-3" width="100"
+                        height="100" alt="Dev 1">
+                    <h6 class="fw-bold mb-1">Mohammad Adel</h6>
+                    <p class="text-primary mb-1">Full Stack Developer</p>
+                    <small class="text-muted">ID: #001</small>
+                </div>
+            </div>
+
+            <!-- Developer 2 -->
+            <div class="col-6 col-md-4 col-lg-3">
+                <div class="team-card p-3 rounded-4 shadow-sm h-100">
+                    <img src="https://randomuser.me/api/portraits/women/21.jpg" class="rounded-circle mb-3" width="100"
+                        height="100" alt="Dev 2">
+                    <h6 class="fw-bold mb-1">Sara Ibrahim</h6>
+                    <p class="text-primary mb-1">Frontend Developer</p>
+                    <small class="text-muted">ID: #002</small>
+                </div>
+            </div>
+
+            <!-- Developer 3 -->
+            <div class="col-6 col-md-4 col-lg-3">
+                <div class="team-card p-3 rounded-4 shadow-sm h-100">
+                    <img src="https://randomuser.me/api/portraits/men/31.jpg" class="rounded-circle mb-3" width="100"
+                        height="100" alt="Dev 3">
+                    <h6 class="fw-bold mb-1">Ahmad Fares</h6>
+                    <p class="text-primary mb-1">Backend Engineer</p>
+                    <small class="text-muted">ID: #003</small>
+                </div>
+            </div>
+
+            <!-- Developer 4 -->
+            <div class="col-6 col-md-4 col-lg-3">
+                <div class="team-card p-3 rounded-4 shadow-sm h-100">
+                    <img src="https://randomuser.me/api/portraits/men/41.jpg" class="rounded-circle mb-3" width="100"
+                        height="100" alt="Dev 4">
+                    <h6 class="fw-bold mb-1">Omar Khaled</h6>
+                    <p class="text-primary mb-1">Database Specialist</p>
+                    <small class="text-muted">ID: #004</small>
+                </div>
+            </div>
+
+            <!-- Developer 5 -->
+            <div class="col-6 col-md-4 col-lg-3">
+                <div class="team-card p-3 rounded-4 shadow-sm h-100">
+                    <img src="https://randomuser.me/api/portraits/women/51.jpg" class="rounded-circle mb-3" width="100"
+                        height="100" alt="Dev 5">
+                    <h6 class="fw-bold mb-1">Lina Yousef</h6>
+                    <p class="text-primary mb-1">UI/UX Designer</p>
+                    <small class="text-muted">ID: #005</small>
+                </div>
+            </div>
+
+            <!-- Developer 6 -->
+            <div class="col-6 col-md-4 col-lg-3">
+                <div class="team-card p-3 rounded-4 shadow-sm h-100">
+                    <img src="https://randomuser.me/api/portraits/men/61.jpg" class="rounded-circle mb-3" width="100"
+                        height="100" alt="Dev 6">
+                    <h6 class="fw-bold mb-1">Hassan Saleh</h6>
+                    <p class="text-primary mb-1">DevOps Engineer</p>
+                    <small class="text-muted">ID: #006</small>
+                </div>
+            </div>
+
+            <!-- Developer 7 -->
+            <div class="col-6 col-md-4 col-lg-3">
+                <div class="team-card p-3 rounded-4 shadow-sm h-100">
+                    <img src="https://randomuser.me/api/portraits/women/71.jpg" class="rounded-circle mb-3" width="100"
+                        height="100" alt="Dev 7">
+                    <h6 class="fw-bold mb-1">Nour Hadi</h6>
+                    <p class="text-primary mb-1">QA & Tester</p>
+                    <small class="text-muted">ID: #007</small>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== Policies Section ====== -->
+    <section class="policies-section">
+        <div class="container">
+            <h2 class="text-center fw-bold mb-5">Course Submission Policies & Publishing Standards</h2>
+
+            <div class="row g-4">
+                <!-- Policy 1 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="policy-card p-4 h-100">
+                        <div class="icon-container policy-icon">
+                            <i class="fas fa-check-circle fa-2x"></i>
+                        </div>
+                        <h4 class="text-center mb-3">Quality Standards</h4>
+                        <p class="text-muted">All courses must adhere to high-quality standards in terms of content,
+                            structure, and delivery. Each course is reviewed by our team before publication.</p>
+                    </div>
+                </div>
+
+                <!-- Policy 2 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="policy-card p-4 h-100">
+                        <div class="icon-container policy-icon">
+                            <i class="fas fa-chalkboard-teacher fa-2x"></i>
+                        </div>
+                        <h4 class="text-center mb-3">Instructor Standards</h4>
+                        <p class="text-muted">Instructors must have at least 3 years of practical experience in their
+                            field of specialization, with proven ability to effectively transfer knowledge.</p>
+                    </div>
+                </div>
+
+                <!-- Policy 3 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="policy-card p-4 h-100">
+                        <div class="icon-container policy-icon">
+                            <i class="fas fa-file-video fa-2x"></i>
+                        </div>
+                        <h4 class="text-center mb-3">Visual Content Quality</h4>
+                        <p class="text-muted">Video and audio quality must be high, with a minimum resolution of 1080p
+                            for video, and clear audio free from distortion.</p>
+                    </div>
+                </div>
+
+                <!-- Policy 4 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="policy-card p-4 h-100">
+                        <div class="icon-container policy-icon">
+                            <i class="fas fa-graduation-cap fa-2x"></i>
+                        </div>
+                        <h4 class="text-center mb-3">Assessment & Feedback</h4>
+                        <p class="text-muted">Each course must contain appropriate assessment activities and provide
+                            feedback to learners to ensure educational objectives are achieved.</p>
+                    </div>
+                </div>
+
+                <!-- Policy 5 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="policy-card p-4 h-100">
+                        <div class="icon-container policy-icon">
+                            <i class="fas fa-sync-alt fa-2x"></i>
+                        </div>
+                        <h4 class="text-center mb-3">Regular Updates</h4>
+                        <p class="text-muted">Content must be updated regularly to keep pace with the latest
+                            developments in the field, with learners notified of important updates.</p>
+                    </div>
+                </div>
+
+                <!-- Policy 6 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="policy-card p-4 h-100">
+                        <div class="icon-container policy-icon">
+                            <i class="fas fa-handshake fa-2x"></i>
+                        </div>
+                        <h4 class="text-center mb-3">Learner Support</h4>
+                        <p class="text-muted">Effective technical and educational support must be provided to learners,
+                            with responses to their inquiries within 24 business hours maximum.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== Footer ====== -->
+    <footer class="text-light py-5 mt-5" style="background: linear-gradient(135deg, #0d6efd, #6610f2);">
+        <div class="container">
+            <div class="row text-center text-md-start">
+                <!-- Logo & About -->
+                <div class="col-md-4 mb-4">
+                    <h4 class="fw-bold mb-3"><i class="fas fa-graduation-cap me-2"></i>Courses Store</h4>
+                    <p>Discover high-quality online courses in programming, design, and business. Learn at your own pace
+                        with top instructors worldwide.</p>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="col-md-4 mb-4">
+                    <h5 class="fw-bold mb-3">Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="index.html" class="text-light text-decoration-none d-block mb-2">Home</a></li>
+                        <li><a href="courses.html" class="text-light text-decoration-none d-block mb-2">Courses</a></li>
+                        <li><a href="about.html" class="text-light text-decoration-none d-block mb-2">About Us</a></li>
+                        <li><a href="contact.html" class="text-light text-decoration-none d-block mb-2">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="col-md-4 mb-4">
+                    <h5 class="fw-bold mb-3">Get in Touch</h5>
+                    <p><i class="fas fa-map-marker-alt me-2"></i>123 Learning St, Knowledge City, USA</p>
+                    <p><i class="fas fa-envelope me-2"></i>support@coursesstore.com</p>
+                    <p><i class="fas fa-phone me-2"></i>+1 (555) 123-4567</p>
+                    <div class="social-icons mt-3">
+                        <a href="#" class="text-light me-3 fs-5"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="text-light me-3 fs-5"><i class="fab fa-x-twitter"></i></a>
+                        <a href="#" class="text-light me-3 fs-5"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-light fs-5"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="border-light">
+            <div class="text-center small mt-3">
+                <p class="mb-0">© 2025 Courses Store. All Rights Reserved. | Designed by <strong>Mohammad Adel
+                        Watad</strong></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ====== Buttons ====== -->
+    <button class="scroll-btn" id="scrollTopBtn"><i class="fas fa-arrow-up"></i></button>
+    <button class="scroll-btn" id="scrollDownBtn"><i class="fas fa-arrow-down"></i></button>
+    <button class="dark-mode-btn" id="darkModeToggle"><i class="fas fa-moon"></i></button>
+
+    <!-- Bootstrap & Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        const scrollTopBtn = document.getElementById("scrollTopBtn");
+        const scrollDownBtn = document.getElementById("scrollDownBtn");
+
+        // ===== Smooth scroll function =====
+        function smoothScroll(to) {
+            window.scrollTo({
+                top: to,
+                behavior: "smooth"
+            });
+        }
+
+        // ===== Show/Hide Buttons =====
+        window.addEventListener("scroll", () => {
+            if (window.scrollY > 200) {
+                scrollTopBtn.style.display = "block";
+            } else {
+                scrollTopBtn.style.display = "none";
+            }
+
+            if (window.innerHeight + window.scrollY < document.body.offsetHeight - 200) {
+                scrollDownBtn.style.display = "block";
+            } else {
+                scrollDownBtn.style.display = "none";
+            }
+        });
+
+        // ===== Scroll Up =====
+        scrollTopBtn.addEventListener("click", () => {
+            smoothScroll(0);
+        });
+
+        // ===== Scroll Down =====
+        scrollDownBtn.addEventListener("click", () => {
+            smoothScroll(document.body.scrollHeight);
+        });
+    </script>
+
+    <script>
+        const toggleBtn = document.getElementById("darkModeToggle");
+        const icon = toggleBtn.querySelector("i");
+
+        // Load saved preference
+        const savedMode = localStorage.getItem("darkMode");
+        if (savedMode === "enabled") {
+            document.body.classList.add("dark-mode");
+            icon.classList.replace("fa-moon", "fa-sun");
+        }
+
+        toggleBtn.addEventListener("click", () => {
+            document.body.classList.toggle("dark-mode");
+
+            const isDark = document.body.classList.contains("dark-mode");
+            if (isDark) {
+                icon.classList.replace("fa-moon", "fa-sun");
+                localStorage.setItem("darkMode", "enabled");
+            } else {
+                icon.classList.replace("fa-sun", "fa-moon");
+                localStorage.setItem("darkMode", "disabled");
+            }
+        });
+    </script>
+</body>
+
+</html>

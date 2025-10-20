@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Courses Store</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Existing styles */
+        .scroll-btn {
+            position: fixed;
+            bottom: 80px;
+            right: 25px;
+            width: 45px;
+            height: 45px;
+            background-color: #0d6efd;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            z-index: 1050;
+            display: none;
+        }
+
+        #scrollDownBtn {
+            bottom: 25px;
+            background-color: #198754;
+        }
+
+        .scroll-btn:hover {
+            transform: scale(1.1);
+            opacity: 0.9;
+        }
+
+        .dark-mode-btn {
+            position: fixed;
+            bottom: 135px;
+            right: 25px;
+            width: 45px;
+            height: 45px;
+            background-color: #6c757d;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            z-index: 1050;
+        }
+
+        .dark-mode-btn:hover {
+            transform: scale(1.1);
+            opacity: 0.9;
+        }
+
+        /* ===== Dark Mode Styling ===== */
+        body.dark-mode {
+            background-color: #121212 !important;
+            color: #eaeaea;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        body.dark-mode .navbar {
+            background-color: #1f1f1f !important;
+        }
+
+        body.dark-mode .card,
+        body.dark-mode .course-card,
+        body.dark-mode footer,
+        body.dark-mode .team-card,
+        body.dark-mode .policy-card,
+        body.dark-mode .contact-card {
+            background-color: #1c1c1c !important;
+            color: #eaeaea !important;
+        }
+
+        body.dark-mode .faq-section {
+            background-color: #383838 !important;
+        }
+
+        body.dark-mode .accordion-body,
+        body.dark-mode .accordion-item,
+        body.dark-mode .accordion-header,
+        body.dark-mode .accordion-button {
+            background-color: #292929 !important;
+            color: #e3f2fd
+        }
+
+        body.dark-mode .btn-outline-primary {
+            color: #0d6efd;
+            border-color: #0d6efd;
+        }
+
+        body.dark-mode .btn-outline-primary:hover {
+            background-color: #0d6efd;
+            color: #fff;
+        }
+
+        body.dark-mode .text-muted {
+            color: #bdbdbd !important;
+        }
+
+        body.dark-mode a {
+            color: #9cc1ff;
+        }
+
+        /* Additional page styles */
+        .hero-section {
+            background: linear-gradient(135deg, #0d6efd, #6610f2);
+            color: white;
+            padding: 80px 0;
+            margin-bottom: 60px;
+        }
+
+        .contact-section {
+            padding: 60px 0;
+        }
+
+        .contact-card {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .contact-info {
+            padding: 30px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 25px;
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            background-color: rgba(13, 110, 253, 0.1);
+            color: #0d6efd;
+            flex-shrink: 0;
+        }
+
+        .contact-details h5 {
+            margin-bottom: 5px;
+        }
+
+        .form-control:focus {
+            border-color: #0d6efd;
+            box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+        }
+
+        .alert-container {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            z-index: 1060;
+            min-width: 300px;
+        }
+
+        .map-container {
+            border-radius: 10px;
+            overflow: hidden;
+            height: 300px;
+            background-color: #f8f9fa;
+        }
+
+        .map-placeholder {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+            color: #0d6efd;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- ====== Navbar ====== -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#">
+                <img src="assets/img/logo.jpg" alt="Logo" height="40" class="me-2"> Courses Store
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="courses.html" class="nav-link">Courses</a></li>
+                    <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+                    <li class="nav-item"><a href="contact.html" class="nav-link active">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Alert Container for Validation Messages -->
+    <div class="alert-container" id="alertContainer"></div>
+
+    <!-- ====== Hero Section ====== -->
+    <section class="hero-section">
+        <div class="container text-center">
+            <h1 class="display-4 fw-bold mb-4">Contact Us</h1>
+            <p class="lead mb-0">We're here to help! Get in touch with our team for any questions or support.</p>
+        </div>
+    </section>
+
+    <!-- ====== Contact Section ====== -->
+    <section class="contact-section">
+        <div class="container">
+            <div class="row g-5">
+                <!-- Contact Information -->
+                <div class="col-lg-5">
+                    <div class="contact-card p-4 h-100">
+                        <h3 class="fw-bold mb-4">Get in Touch</h3>
+                        <p class="text-muted mb-4">Have questions about our courses or need support? Feel free to reach
+                            out to us through any of the following channels.</p>
+
+                        <div class="contact-info">
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div class="contact-details">
+                                    <h5>Our Location</h5>
+                                    <p class="text-muted mb-0">123 Learning St, Knowledge City, USA</p>
+                                </div>
+                            </div>
+
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div class="contact-details">
+                                    <h5>Email Us</h5>
+                                    <p class="text-muted mb-0">support@coursesstore.com</p>
+                                    <p class="text-muted mb-0">info@coursesstore.com</p>
+                                </div>
+                            </div>
+
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-phone"></i>
+                                </div>
+                                <div class="contact-details">
+                                    <h5>Call Us</h5>
+                                    <p class="text-muted mb-0">+1 (555) 123-4567</p>
+                                    <p class="text-muted mb-0">+1 (555) 987-6543</p>
+                                </div>
+                            </div>
+
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-clock"></i>
+                                </div>
+                                <div class="contact-details">
+                                    <h5>Working Hours</h5>
+                                    <p class="text-muted mb-0">Monday - Friday: 9:00 AM - 6:00 PM</p>
+                                    <p class="text-muted mb-0">Saturday: 10:00 AM - 2:00 PM</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="social-icons mt-4">
+                            <h5 class="mb-3">Follow Us</h5>
+                            <a href="#" class="text-primary me-3 fs-4"><i class="fab fa-facebook"></i></a>
+                            <a href="#" class="text-primary me-3 fs-4"><i class="fab fa-x-twitter"></i></a>
+                            <a href="#" class="text-primary me-3 fs-4"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="text-primary fs-4"><i class="fab fa-linkedin"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="col-lg-7">
+                    <div class="contact-card p-4 h-100">
+                        <h3 class="fw-bold mb-4">Send Us a Message</h3>
+                        <form id="contactForm" novalidate>
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label for="name" class="form-label">Full Name *</label>
+                                    <input type="text" class="form-control" id="name"
+                                        placeholder="Enter your full name">
+                                    <div class="invalid-feedback" id="nameError">
+                                        Please provide a valid name.
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="email" class="form-label">Email Address *</label>
+                                    <input type="email" class="form-control" id="email" placeholder="Enter your email">
+                                    <div class="invalid-feedback" id="emailError">
+                                        Please provide a valid email address.
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <label for="subject" class="form-label">Subject *</label>
+                                    <input type="text" class="form-control" id="subject"
+                                        placeholder="Enter message subject">
+                                    <div class="invalid-feedback" id="subjectError">
+                                        Please provide a subject for your message.
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <label for="message" class="form-label">Message *</label>
+                                    <textarea class="form-control" id="message" rows="6"
+                                        placeholder="Enter your message here..."></textarea>
+                                    <div class="invalid-feedback" id="messageError">
+                                        Please provide a message with at least 10 characters.
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="newsletter">
+                                        <label class="form-check-label" for="newsletter">
+                                            Subscribe to our newsletter for updates on new courses and promotions
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <button type="submit" class="btn btn-primary px-4 py-2">
+                                        <i class="fas fa-paper-plane me-2"></i> Send Message
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Map Section -->
+            <div class="row mt-5">
+                <div class="col-12">
+                    <div class="contact-card p-4">
+                        <h3 class="fw-bold mb-4">Find Us</h3>
+                        <div class="map-container">
+                            <div class="map-placeholder">
+                                <div class="text-center">
+                                    <i class="fas fa-map-marked-alt fa-3x mb-3"></i>
+                                    <p>Interactive Map Location</p>
+                                    <small class="text-muted">(Map integration would go here)</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== FAQ Section ====== -->
+    <section class="faq-section bg-light py-5">
+        <div class="container">
+            <h2 class="text-center fw-bold mb-5">Frequently Asked Questions</h2>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="accordion" id="faqAccordion">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#faq1">
+                                    How do I enroll in a course?
+                                </button>
+                            </h2>
+                            <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    You can enroll in any course by visiting our courses page, selecting the course
+                                    you're interested in, and clicking the "Enroll Now" button. You'll be guided through
+                                    the payment and registration process.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#faq2">
+                                    Do you offer certificates upon completion?
+                                </button>
+                            </h2>
+                            <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Yes, we offer certificates of completion for all our courses. After finishing all
+                                    course requirements and passing the final assessment, you'll be able to download
+                                    your certificate directly from your dashboard.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#faq3">
+                                    What is your refund policy?
+                                </button>
+                            </h2>
+                            <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    We offer a 30-day money-back guarantee for all our courses. If you're not satisfied
+                                    with your purchase, you can request a full refund within 30 days of enrollment.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== Footer ====== -->
+    <footer class="text-light py-5 mt-5" style="background: linear-gradient(135deg, #0d6efd, #6610f2);">
+        <div class="container">
+            <div class="row text-center text-md-start">
+                <!-- Logo & About -->
+                <div class="col-md-4 mb-4">
+                    <h4 class="fw-bold mb-3"><i class="fas fa-graduation-cap me-2"></i>Courses Store</h4>
+                    <p>Discover high-quality online courses in programming, design, and business. Learn at your own pace
+                        with top instructors worldwide.</p>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="col-md-4 mb-4">
+                    <h5 class="fw-bold mb-3">Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="index.html" class="text-light text-decoration-none d-block mb-2">Home</a></li>
+                        <li><a href="courses.html" class="text-light text-decoration-none d-block mb-2">Courses</a></li>
+                        <li><a href="about.html" class="text-light text-decoration-none d-block mb-2">About Us</a></li>
+                        <li><a href="contact.html" class="text-light text-decoration-none d-block mb-2">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="col-md-4 mb-4">
+                    <h5 class="fw-bold mb-3">Get in Touch</h5>
+                    <p><i class="fas fa-map-marker-alt me-2"></i>123 Learning St, Knowledge City, USA</p>
+                    <p><i class="fas fa-envelope me-2"></i>support@coursesstore.com</p>
+                    <p><i class="fas fa-phone me-2"></i>+1 (555) 123-4567</p>
+                    <div class="social-icons mt-3">
+                        <a href="#" class="text-light me-3 fs-5"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="text-light me-3 fs-5"><i class="fab fa-x-twitter"></i></a>
+                        <a href="#" class="text-light me-3 fs-5"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-light fs-5"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="border-light">
+            <div class="text-center small mt-3">
+                <p class="mb-0">© 2025 Courses Store. All Rights Reserved. | Designed by <strong>Mohammad Adel
+                        Watad</strong></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ====== Buttons ====== -->
+    <button class="scroll-btn" id="scrollTopBtn"><i class="fas fa-arrow-up"></i></button>
+    <button class="scroll-btn" id="scrollDownBtn"><i class="fas fa-arrow-down"></i></button>
+    <button class="dark-mode-btn" id="darkModeToggle"><i class="fas fa-moon"></i></button>
+
+    <!-- Bootstrap & Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Form Validation
+        document.getElementById('contactForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            // Reset previous validation states
+            resetValidation();
+
+            // Get form values
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const subject = document.getElementById('subject').value.trim();
+            const message = document.getElementById('message').value.trim();
+
+            let isValid = true;
+            let errorMessage = '';
+
+            // Validate name
+            if (name === '') {
+                showError('name', 'Please enter your full name.');
+                isValid = false;
+                errorMessage += '• Name is required\n';
+            } else if (name.length < 2) {
+                showError('name', 'Name must be at least 2 characters long.');
+                isValid = false;
+                errorMessage += '• Name must be at least 2 characters\n';
+            }
+
+            // Validate email
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (email === '') {
+                showError('email', 'Please enter your email address.');
+                isValid = false;
+                errorMessage += '• Email is required\n';
+            } else if (!emailRegex.test(email)) {
+                showError('email', 'Please enter a valid email address.');
+                isValid = false;
+                errorMessage += '• Valid email is required\n';
+            }
+
+            // Validate subject
+            if (subject === '') {
+                showError('subject', 'Please enter a subject for your message.');
+                isValid = false;
+                errorMessage += '• Subject is required\n';
+            }
+
+            // Validate message
+            if (message === '') {
+                showError('message', 'Please enter your message.');
+                isValid = false;
+                errorMessage += '• Message is required\n';
+            } else if (message.length < 10) {
+                showError('message', 'Message must be at least 10 characters long.');
+                isValid = false;
+                errorMessage += '• Message must be at least 10 characters\n';
+            }
+
+            if (isValid) {
+                // Form is valid - show success message
+                showAlert('Your message has been sent successfully! We will get back to you soon.', 'success');
+
+                // Reset form
+                document.getElementById('contactForm').reset();
+            } else {
+                // Form is invalid - show error message
+                showAlert('Please fix the following errors:\n' + errorMessage, 'danger');
+            }
+        });
+
+        function showError(fieldId, message) {
+            const field = document.getElementById(fieldId);
+            const errorElement = document.getElementById(fieldId + 'Error');
+
+            field.classList.add('is-invalid');
+            errorElement.textContent = message;
+        }
+
+        function resetValidation() {
+            const fields = document.querySelectorAll('.form-control');
+            fields.forEach(field => {
+                field.classList.remove('is-invalid');
+            });
+        }
+
+        function showAlert(message, type) {
+            const alertContainer = document.getElementById('alertContainer');
+
+            const alert = document.createElement('div');
+            alert.className = `alert alert-${type} alert-dismissible fade show`;
+            alert.innerHTML = `
+                ${message}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            `;
+
+            alertContainer.appendChild(alert);
+
+            // Auto remove after 5 seconds
+            setTimeout(() => {
+                if (alert.parentNode) {
+                    alert.remove();
+                }
+            }, 5000);
+        }
+
+        // Scroll buttons functionality
+        const scrollTopBtn = document.getElementById("scrollTopBtn");
+        const scrollDownBtn = document.getElementById("scrollDownBtn");
+
+        function smoothScroll(to) {
+            window.scrollTo({
+                top: to,
+                behavior: "smooth"
+            });
+        }
+
+        window.addEventListener("scroll", () => {
+            if (window.scrollY > 200) {
+                scrollTopBtn.style.display = "block";
+            } else {
+                scrollTopBtn.style.display = "none";
+            }
+
+            if (window.innerHeight + window.scrollY < document.body.offsetHeight - 200) {
+                scrollDownBtn.style.display = "block";
+            } else {
+                scrollDownBtn.style.display = "none";
+            }
+        });
+
+        scrollTopBtn.addEventListener("click", () => {
+            smoothScroll(0);
+        });
+
+        scrollDownBtn.addEventListener("click", () => {
+            smoothScroll(document.body.scrollHeight);
+        });
+
+        // Dark mode functionality
+        const toggleBtn = document.getElementById("darkModeToggle");
+        const icon = toggleBtn.querySelector("i");
+
+        const savedMode = localStorage.getItem("darkMode");
+        if (savedMode === "enabled") {
+            document.body.classList.add("dark-mode");
+            icon.classList.replace("fa-moon", "fa-sun");
+        }
+
+        toggleBtn.addEventListener("click", () => {
+            document.body.classList.toggle("dark-mode");
+
+            const isDark = document.body.classList.contains("dark-mode");
+            if (isDark) {
+                icon.classList.replace("fa-moon", "fa-sun");
+                localStorage.setItem("darkMode", "enabled");
+            } else {
+                icon.classList.replace("fa-sun", "fa-moon");
+                localStorage.setItem("darkMode", "disabled");
+            }
+        });
+    </script>
+</body>
+
+</html>

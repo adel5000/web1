@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home | Courses Store</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* تنسيقات الأعلام */
+        .flag-icon {
+            width: 24px;
+            height: 18px;
+            display: inline-block;
+            background-size: cover;
+            border-radius: 2px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+            margin: 0 2px;
+        }
+
+        .flag-sy {
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3 2"><rect width="3" height="2" fill="%23CE1126"/><rect width="3" height="1" fill="%23fff"/><rect y="1" width="3" height="1" fill="%23000000"/><path fill="%2300787E" d="M0 0h1v2H0z"/><path fill="%23fff" d="M.5 .5l.2 .1-.1-.2-.1.1z"/></svg>');
+        }
+
+        .flag-us {
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 30"><clipPath id="t"><path d="M30,15 h30 v15 z v15 h-30 z h-30 v-15 z v-15 h30 z"/></clipPath><path d="M0,0 v30 h60 v-30 z" fill="%23002169"/><path d="M0,0 L60,30 M60,0 L0,30" stroke="%23fff" stroke-width="6"/><path d="M0,0 L60,30 M60,0 L0,30" clip-path="url(%23t)" stroke="%23bf0a30" stroke-width="4"/><path d="M30,0 v30 M0,15 h60" stroke="%23fff" stroke-width="10"/><path d="M30,0 v30 M0,15 h60" stroke="%23bf0a30" stroke-width="6"/></svg>');
+        }
+
+        /* تنسيقات زر تغيير اللغة */
+        .language-switcher {
+            display: flex;
+            align-items: center;
+            margin-right: 15px;
+        }
+
+        .language-btn {
+            display: flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            border-radius: 4px;
+            padding: 5px 10px;
+            color: white;
+            transition: all 0.3s;
+            margin: 0 2px;
+            gap: 5px;
+        }
+
+        .language-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-1px);
+        }
+
+        .language-btn.active {
+            background: rgba(255, 255, 255, 0.4);
+            box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+        }
+
+        /* تنسيقات للغة العربية */
+        [dir="rtl"] .language-switcher {
+            margin-right: 0;
+            margin-left: 15px;
+        }
+
+        /* تنسيقات للغة الإنجليزية */
+        [dir="ltr"] .language-switcher {
+            margin-right: 15px;
+            margin-left: 0;
+        }
+
+        /* تنسيقات عامة للصفحة */
+        body {
+            transition: all 0.3s;
+        }
+
+        .hero-section {
+            background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%);
+            color: white;
+            padding: 80px 0;
+            margin-bottom: 40px;
+        }
+
+        .course-card {
+            transition: transform 0.3s;
+            margin-bottom: 20px;
+        }
+
+        .course-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .nav-item img {
+            height: 10px;
+        }
+    </style>
+</head>
+
+<body style="font-family: 'Cairo', sans-serif;">
+
+    <!-- ====== Navbar ====== -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#">
+                <img src="../assets/img/logo.jpg" alt="Logo" height="40" class="me-2">
+                <span class="site-name">Courses Store</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a href="index.html" class="nav-link active" data-translate="home">Home</a>
+                    </li>
+                    <li class="nav-item"><a href="courses.html" class="nav-link" data-translate="courses">Courses</a>
+                    </li>
+                    <li class="nav-item"><a href="about.html" class="nav-link" data-translate="about">About</a></li>
+                    <li class="nav-item"><a href="contact.html" class="nav-link" data-translate="contact">Contact</a>
+                    </li>
+
+                    <!-- أزرار تغيير اللغة -->
+                    <li class="nav-item">
+                        <div class="language-switcher">
+                            <button class="language-btn" data-lang="ar">
+                                <img src="../assets/img/sy.webp" alt="">
+                                <span class="d-none d-sm-inline">العربية</span>
+                            </button>
+                            <button class="language-btn" data-lang="en">
+                                <img src="../assets/img/usa.jpg" alt="">
+                                <span class="d-none d-sm-inline">English</span>
+                            </button>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ====== Hero Slider ====== -->
+    <section id="hero" class="mt-4">
+        <div id="featuredCourses" class="carousel slide container" data-bs-ride="carousel">
+            <div class="carousel-inner rounded-4 shadow">
+                <!-- 9 Courses Slides -->
+                <!-- ====== Featured Courses Slider ====== -->
+                <section class="container mt-5">
+                    <h2 class="text-center mb-4 fw-bold">Featured Courses</h2>
+
+                    <div id="heroCoursesCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
+                        <div class="carousel-inner rounded-4 shadow-lg">
+
+                            <!-- Slide 1 -->
+                            <div class="carousel-item active">
+                                <a href="course.html?id=1">
+                                    <img src="../assets/img/course1.jpg" class="d-block w-100" alt="Web Development">
+                                    <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded-3">
+                                        <h5>Web Development</h5>
+                                        <p>Build websites from scratch.</p>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <!-- Slide 2 -->
+                            <div class="carousel-item">
+                                <a href="course.html">
+                                    <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=400"
+                                        class="d-block w-100" alt="Artificial Intelligence">
+                                    <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded-3">
+                                        <h5>Artificial Intelligence</h5>
+                                        <p>Learn AI techniques.</p>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <!-- Slide 3 -->
+                            <div class="carousel-item">
+                                <a href="course.html">
+                                    <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=400"
+                                        class="d-block w-100" alt="Project Management">
+                                    <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded-3">
+                                        <h5>Project Management</h5>
+                                        <p>Plan and execute projects.</p>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <!-- Slide 4 -->
+                            <div class="carousel-item">
+                                <a href="course.html">
+                                    <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=400"
+                                        class="d-block w-100" alt="UI/UX Design">
+                                    <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded-3">
+                                        <h5>UI/UX Design</h5>
+                                        <p>Create modern user interfaces.</p>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <!-- Slide 5 -->
+                            <div class="carousel-item">
+                                <a href="course.html">
+                                    <img src="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=400"
+                                        class="d-block w-100" alt="Python for Data Science">
+                                    <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded-3">
+                                        <h5>Python for Data Science</h5>
+                                        <p>Master data analysis.</p>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <!-- Slide 6 -->
+                            <div class="carousel-item">
+                                <a href="course.html">
+                                    <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=400"
+                                        class="d-block w-100" alt="Machine Learning">
+                                    <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded-3">
+                                        <h5>Machine Learning</h5>
+                                        <p>Train ML models easily.</p>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <!-- Slide 7 -->
+                            <div class="carousel-item">
+                                <a href="course.html">
+                                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400"
+                                        class="d-block w-100" alt="Data Analytics">
+                                    <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded-3">
+                                        <h5>Data Analytics</h5>
+                                        <p>Explore big data tools.</p>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <!-- Slide 8 -->
+                            <div class="carousel-item">
+                                <a href="course.html">
+                                    <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=400"
+                                        class="d-block w-100" alt="Cybersecurity">
+                                    <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded-3">
+                                        <h5>Cybersecurity</h5>
+                                        <p>Protect systems and data.</p>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <!-- Slide 9 -->
+                            <div class="carousel-item">
+                                <a href="course.html">
+                                    <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=400"
+                                        class="d-block w-100" alt="Mobile App Development">
+                                    <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded-3">
+                                        <h5>Mobile App Development</h5>
+                                        <p>Build Android and iOS apps.</p>
+                                    </div>
+                                </a>
+                            </div>
+
+                        </div>
+
+                        <!-- Controls -->
+                        <button class="carousel-control-prev" type="button" data-bs-target="#heroCoursesCarousel"
+                            data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon"></span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#heroCoursesCarousel"
+                            data-bs-slide="next">
+                            <span class="carousel-control-next-icon"></span>
+                        </button>
+
+                        <!-- Indicators -->
+                        <div class="carousel-indicators">
+                            <button type="button" data-bs-target="#heroCoursesCarousel" data-bs-slide-to="0"
+                                class="active"></button>
+                            <button type="button" data-bs-target="#heroCoursesCarousel" data-bs-slide-to="1"></button>
+                            <button type="button" data-bs-target="#heroCoursesCarousel" data-bs-slide-to="2"></button>
+                            <button type="button" data-bs-target="#heroCoursesCarousel" data-bs-slide-to="3"></button>
+                            <button type="button" data-bs-target="#heroCoursesCarousel" data-bs-slide-to="4"></button>
+                            <button type="button" data-bs-target="#heroCoursesCarousel" data-bs-slide-to="5"></button>
+                            <button type="button" data-bs-target="#heroCoursesCarousel" data-bs-slide-to="6"></button>
+                            <button type="button" data-bs-target="#heroCoursesCarousel" data-bs-slide-to="7"></button>
+                            <button type="button" data-bs-target="#heroCoursesCarousel" data-bs-slide-to="8"></button>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== Categories Section ====== -->
+    <!-- ====== Quick Categories / Filter Buttons ====== -->
+    <section class="categories container text-center my-5">
+        <h2 class="mb-4 fw-bold">Quick Categories</h2>
+        <div class="d-flex flex-wrap justify-content-center gap-2">
+            <button class="btn btn-outline-primary active" data-filter="all">All</button>
+            <button class="btn btn-outline-primary" data-filter="programming">Programming</button>
+            <button class="btn btn-outline-primary" data-filter="design">Design</button>
+            <button class="btn btn-outline-primary" data-filter="business">Business</button>
+            <button class="btn btn-outline-primary" data-filter="languages">Languages</button>
+        </div>
+    </section>
+
+    <!-- ====== All Courses (Single Section) ====== -->
+    <section class="courses-section container my-5">
+        <div class="course-grid">
+            <!-- Programming -->
+            <div class="course-card" data-category="programming">
+                <img src="https://images.unsplash.com/photo-1581090700227-1e37b190418e" alt="Web Dev">
+                <div class="p-3">
+                    <h6>Full Stack Web Development</h6>
+                    <p class="text-muted">Build modern websites using HTML, CSS, and JS.</p>
+                </div>
+            </div>
+            <div class="course-card" data-category="programming">
+                <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c" alt="Python">
+                <div class="p-3">
+                    <h6>Python Programming</h6>
+                    <p class="text-muted">Start coding with Python for data and AI.</p>
+                </div>
+            </div>
+
+            <!-- Design -->
+            <div class="course-card" data-category="design">
+                <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c" alt="Design">
+                <div class="p-3">
+                    <h6>Graphic Design Essentials</h6>
+                    <p class="text-muted">Learn color, layout, and typography basics.</p>
+                </div>
+            </div>
+            <div class="course-card" data-category="design">
+                <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c" alt="UI/UX">
+                <div class="p-3">
+                    <h6>UI/UX Design Masterclass</h6>
+                    <p class="text-muted">Design digital experiences using Figma.</p>
+                </div>
+            </div>
+
+            <!-- Business -->
+            <div class="course-card" data-category="business">
+                <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4" alt="Business">
+                <div class="p-3">
+                    <h6>Startup Fundamentals</h6>
+                    <p class="text-muted">Turn ideas into successful businesses.</p>
+                </div>
+            </div>
+            <div class="course-card" data-category="business">
+                <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4" alt="Marketing">
+                <div class="p-3">
+                    <h6>Digital Marketing</h6>
+                    <p class="text-muted">Learn SEO, ads, and online promotion.</p>
+                </div>
+            </div>
+
+            <!-- Languages -->
+            <div class="course-card" data-category="languages">
+                <img src="https://images.unsplash.com/photo-1596495577886-d920f1fb7238" alt="English">
+                <div class="p-3">
+                    <h6>English for Beginners</h6>
+                    <p class="text-muted">Improve your communication skills easily.</p>
+                </div>
+            </div>
+            <div class="course-card" data-category="languages">
+                <img src="https://images.unsplash.com/photo-1596495577886-d920f1fb7238" alt="French">
+                <div class="p-3">
+                    <h6>French Basics</h6>
+                    <p class="text-muted">Speak and understand French confidently.</p>
+                </div>
+            </div>
+
+            <!-- Extra mixed -->
+            <div class="course-card" data-category="programming">
+                <img src="https://images.unsplash.com/photo-1596495577886-d920f1fb7238" alt="C++">
+                <div class="p-3">
+                    <h6>Mastering C++</h6>
+                    <p class="text-muted">Understand OOP and algorithms deeply.</p>
+                </div>
+            </div>
+            <div class="course-card" data-category="business">
+                <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d" alt="Leadership">
+                <div class="p-3">
+                    <h6>Leadership Skills</h6>
+                    <p class="text-muted">Develop your communication and influence.</p>
+                </div>
+            </div>
+            <div class="course-card" data-category="design">
+                <img src="https://images.unsplash.com/photo-1581090700227-1e37b190418e" alt="Animation">
+                <div class="p-3">
+                    <h6>Motion Graphics</h6>
+                    <p class="text-muted">Animate designs using After Effects.</p>
+                </div>
+            </div>
+            <div class="course-card" data-category="languages">
+                <img src="https://images.unsplash.com/photo-1607746882042-944635dfe10e" alt="Spanish">
+                <div class="p-3">
+                    <h6>Spanish Language</h6>
+                    <p class="text-muted">Learn to converse fluently in Spanish.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ====== Latest Courses Grid ====== -->
+    <section class="latest-courses container my-5">
+        <h2 class="text-center mb-4 fw-bold">Latest Courses</h2>
+        <div class="course-grid">
+            <!-- Course Cards -->
+            <div class="course-card" data-category="programming">
+                <a href="course.html"><img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=600"
+                        alt="course1"></a>
+                <div class="p-3">
+                    <h6>Full Web Development</h6>
+                    <p class="text-muted">Build responsive websites step by step.</p>
+                </div>
+            </div>
+            <div class="course-card" data-category="ai">
+                <a href="course.html"><img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=600"
+                        alt="course2"></a>
+                <div class="p-3">
+                    <h6>AI for Beginners</h6>
+                    <p class="text-muted">Explore Artificial Intelligence basics.</p>
+                </div>
+            </div>
+            <div class="course-card" data-category="design">
+                <a href="course.html"><img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=600"
+                        alt="course4"></a>
+                <div class="p-3">
+                    <h6>UI/UX Design Fundamentals</h6>
+                    <p class="text-muted">Design user-friendly interfaces.</p>
+                </div>
+            </div>
+            <div class="course-card" data-category="business">
+                <a href="course.html"><img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=600"
+                        alt="course5"></a>
+                <div class="p-3">
+                    <h6>Digital Marketing Strategy</h6>
+                    <p class="text-muted">Boost your business online.</p>
+                </div>
+            </div>
+            <div class="course-card" data-category="ai">
+                <a href="course.html"><img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=600"
+                        alt="course8"></a>
+                <div class="p-3">
+                    <h6>Machine Learning Crash Course</h6>
+                    <p class="text-muted">Learn ML algorithms easily.</p>
+                </div>
+            </div>
+            <div class="course-card" data-category="programming">
+                <a href="course.html"><img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=600"
+                        alt="course10"></a>
+                <div class="p-3">
+                    <h6>Mobile App Development</h6>
+                    <p class="text-muted">Create Android & iOS apps.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ====== Our Team Section ====== -->
+    <section class="team-section container my-5 text-center">
+        <h2 class="fw-bold mb-4">Our Development Team</h2>
+        <p class="text-muted mb-5">Meet the passionate developers who built this platform.</p>
+
+        <div class="row g-4">
+            <!-- Developer 1 -->
+            <div class="col-6 col-md-4 col-lg-3">
+                <div class="team-card p-3 rounded-4 shadow-sm h-100">
+                    <img src="https://randomuser.me/api/portraits/men/12.jpg" class="rounded-circle mb-3" width="100"
+                        height="100" alt="Dev 1">
+                    <h6 class="fw-bold mb-1">Mohammad Adel</h6>
+                    <p class="text-primary mb-1">Full Stack Developer</p>
+                    <small class="text-muted">ID: #001</small>
+                </div>
+            </div>
+
+            <!-- Developer 2 -->
+            <div class="col-6 col-md-4 col-lg-3">
+                <div class="team-card p-3 rounded-4 shadow-sm h-100">
+                    <img src="https://randomuser.me/api/portraits/women/21.jpg" class="rounded-circle mb-3" width="100"
+                        height="100" alt="Dev 2">
+                    <h6 class="fw-bold mb-1">Sara Ibrahim</h6>
+                    <p class="text-primary mb-1">Frontend Developer</p>
+                    <small class="text-muted">ID: #002</small>
+                </div>
+            </div>
+
+            <!-- Developer 3 -->
+            <div class="col-6 col-md-4 col-lg-3">
+                <div class="team-card p-3 rounded-4 shadow-sm h-100">
+                    <img src="https://randomuser.me/api/portraits/men/31.jpg" class="rounded-circle mb-3" width="100"
+                        height="100" alt="Dev 3">
+                    <h6 class="fw-bold mb-1">Ahmad Fares</h6>
+                    <p class="text-primary mb-1">Backend Engineer</p>
+                    <small class="text-muted">ID: #003</small>
+                </div>
+            </div>
+
+            <!-- Developer 4 -->
+            <div class="col-6 col-md-4 col-lg-3">
+                <div class="team-card p-3 rounded-4 shadow-sm h-100">
+                    <img src="https://randomuser.me/api/portraits/men/41.jpg" class="rounded-circle mb-3" width="100"
+                        height="100" alt="Dev 4">
+                    <h6 class="fw-bold mb-1">Omar Khaled</h6>
+                    <p class="text-primary mb-1">Database Specialist</p>
+                    <small class="text-muted">ID: #004</small>
+                </div>
+            </div>
+
+            <!-- Developer 5 -->
+            <div class="col-6 col-md-4 col-lg-3">
+                <div class="team-card p-3 rounded-4 shadow-sm h-100">
+                    <img src="https://randomuser.me/api/portraits/women/51.jpg" class="rounded-circle mb-3" width="100"
+                        height="100" alt="Dev 5">
+                    <h6 class="fw-bold mb-1">Lina Yousef</h6>
+                    <p class="text-primary mb-1">UI/UX Designer</p>
+                    <small class="text-muted">ID: #005</small>
+                </div>
+            </div>
+
+            <!-- Developer 6 -->
+            <div class="col-6 col-md-4 col-lg-3">
+                <div class="team-card p-3 rounded-4 shadow-sm h-100">
+                    <img src="https://randomuser.me/api/portraits/men/61.jpg" class="rounded-circle mb-3" width="100"
+                        height="100" alt="Dev 6">
+                    <h6 class="fw-bold mb-1">Hassan Saleh</h6>
+                    <p class="text-primary mb-1">DevOps Engineer</p>
+                    <small class="text-muted">ID: #006</small>
+                </div>
+            </div>
+
+            <!-- Developer 7 -->
+            <div class="col-6 col-md-4 col-lg-3">
+                <div class="team-card p-3 rounded-4 shadow-sm h-100">
+                    <img src="https://randomuser.me/api/portraits/women/71.jpg" class="rounded-circle mb-3" width="100"
+                        height="100" alt="Dev 7">
+                    <h6 class="fw-bold mb-1">Nour Hadi</h6>
+                    <p class="text-primary mb-1">QA & Tester</p>
+                    <small class="text-muted">ID: #007</small>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== Footer ====== -->
+    <footer class="text-light py-5 mt-5" style="background: linear-gradient(135deg, #0d6efd, #6610f2);">
+        <div class="container">
+            <div class="row text-center text-md-start">
+                <!-- Logo & About -->
+                <div class="col-md-4 mb-4">
+                    <h4 class="fw-bold mb-3"><i class="fas fa-graduation-cap me-2"></i>Courses Store</h4>
+                    <p>Discover high-quality online courses in programming, design, and business. Learn at your own pace
+                        with top instructors worldwide.</p>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="col-md-4 mb-4">
+                    <h5 class="fw-bold mb-3">Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="index.html" class="text-light text-decoration-none d-block mb-2">Home</a></li>
+                        <li><a href="courses.html" class="text-light text-decoration-none d-block mb-2">Courses</a></li>
+                        <li><a href="about.html" class="text-light text-decoration-none d-block mb-2">About Us</a></li>
+                        <li><a href="contact.html" class="text-light text-decoration-none d-block mb-2">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="col-md-4 mb-4">
+                    <h5 class="fw-bold mb-3">Get in Touch</h5>
+                    <p><i class="fas fa-map-marker-alt me-2"></i>123 Learning St, Knowledge City, USA</p>
+                    <p><i class="fas fa-envelope me-2"></i>support@coursesstore.com</p>
+                    <p><i class="fas fa-phone me-2"></i>+1 (555) 123-4567</p>
+                    <div class="social-icons mt-3">
+                        <a href="#" class="text-light me-3 fs-5"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="text-light me-3 fs-5"><i class="fab fa-x-twitter"></i></a>
+                        <a href="#" class="text-light me-3 fs-5"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-light fs-5"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="border-light">
+            <div class="text-center small mt-3">
+                <p class="mb-0">© 2025 Courses Store. All Rights Reserved. | Designed by <strong>Mohammad Adel
+                        Watad</strong></p>
+            </div>
+        </div>
+    </footer>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/lang.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Details - Courses Store</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        .course-hero {
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .course-gallery img {
+            height: 150px;
+            object-fit: cover;
+            border-radius: 10px;
+            transition: 0.3s ease;
+        }
+
+        .course-gallery img:hover {
+            transform: scale(1.05);
+        }
+
+        .map-container iframe {
+            border-radius: 15px;
+            width: 100%;
+            height: 300px;
+        }
+
+        .related-card img {
+            height: 150px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .bg-pink {
+            background-color: #e83e8c !important;
+            color: #fff !important;
+        }
+
+        .scroll-btn {
+            position: fixed;
+            bottom: 80px;
+            right: 25px;
+            width: 45px;
+            height: 45px;
+            background-color: #0d6efd;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            z-index: 1050;
+            display: none;
+        }
+
+        #scrollDownBtn {
+            bottom: 25px;
+            background-color: #198754;
+            /* green for down */
+        }
+
+        .scroll-btn:hover {
+            transform: scale(1.1);
+            opacity: 0.9;
+        }
+
+        .dark-mode-btn {
+            position: fixed;
+            bottom: 135px;
+            right: 25px;
+            width: 45px;
+            height: 45px;
+            background-color: #6c757d;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            z-index: 1050;
+        }
+
+        .dark-mode-btn:hover {
+            transform: scale(1.1);
+            opacity: 0.9;
+        }
+
+        /* ===== Dark Mode Styling ===== */
+        body.dark-mode {
+            background-color: #121212 !important;
+            color: #eaeaea;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        body.dark-mode>div.container {
+            background-color: #2c2c2c !important;
+            color: #eaeaea;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        body.dark-mode .navbar {
+            background-color: #1f1f1f !important;
+        }
+
+        body.dark-mode .card,
+        body.dark-mode .course-card,
+        body.dark-mode footer {
+            background-color: #1c1c1c !important;
+            color: #eaeaea !important;
+        }
+
+        body.dark-mode .btn-outline-primary {
+            color: #0d6efd;
+            border-color: #0d6efd;
+        }
+
+        body.dark-mode .btn-outline-primary:hover {
+            background-color: #0d6efd;
+            color: #fff;
+        }
+
+        body.dark-mode .text-muted {
+            color: #bdbdbd !important;
+        }
+
+        body.dark-mode a {
+            color: #9cc1ff;
+        }
+    </style>
+</head>
+
+<body class="bg-light">
+
+    <!-- ====== Navbar ====== -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#">
+                <img src="assets/img/logo.jpg" alt="Logo" height="40" class="me-2"> Courses Store
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="courses.html" class="nav-link active">Courses</a></li>
+                    <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+                    <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ====== Course Details Section ====== -->
+    <div class="container py-5" id="courseDetails">
+        <!-- Dynamic Content Will Be Injected Here -->
+    </div>
+
+    <!-- ====== Footer ====== -->
+    <footer class="text-light py-5 mt-5" style="background: linear-gradient(135deg, #0d6efd, #6610f2);">
+        <div class="container">
+            <div class="row text-center text-md-start">
+                <div class="col-md-4 mb-4">
+                    <h4 class="fw-bold mb-3"><i class="fas fa-graduation-cap me-2"></i>Courses Store</h4>
+                    <p>Discover high-quality online courses in programming, design, and business. Learn at your own pace
+                        with top instructors worldwide.</p>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5 class="fw-bold mb-3">Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="index.html" class="text-light text-decoration-none d-block mb-2">Home</a></li>
+                        <li><a href="courses.html" class="text-light text-decoration-none d-block mb-2">Courses</a></li>
+                        <li><a href="about.html" class="text-light text-decoration-none d-block mb-2">About Us</a></li>
+                        <li><a href="contact.html" class="text-light text-decoration-none d-block mb-2">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5 class="fw-bold mb-3">Get in Touch</h5>
+                    <p><i class="fas fa-map-marker-alt me-2"></i>123 Learning St, Knowledge City, USA</p>
+                    <p><i class="fas fa-envelope me-2"></i>support@coursesstore.com</p>
+                    <p><i class="fas fa-phone me-2"></i>+1 (555) 123-4567</p>
+                    <div class="social-icons mt-3">
+                        <a href="#" class="text-light me-3 fs-5"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="text-light me-3 fs-5"><i class="fab fa-x-twitter"></i></a>
+                        <a href="#" class="text-light me-3 fs-5"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-light fs-5"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr class="border-light">
+            <div class="text-center small mt-3">
+                <p class="mb-0">© 2025 Courses Store. All Rights Reserved. | Designed by <strong>Mohammad Adel
+                        Watad</strong></p>
+            </div>
+        </div>
+    </footer>
+    <!-- ===== Enroll Modal ===== -->
+    <div class="modal fade" id="enrollModal" tabindex="-1" aria-labelledby="enrollModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content rounded-4 shadow">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title" id="enrollModalLabel"><i class="fa-solid fa-user-plus me-2"></i>Enroll in
+                        Course</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="alertBox"></div>
+                    <form id="enrollForm">
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">Full Name</label>
+                            <input type="text" id="enrollName" class="form-control" placeholder="Enter your full name">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">Email Address</label>
+                            <input type="email" id="enrollEmail" class="form-control" placeholder="example@mail.com">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">Phone Number</label>
+                            <input type="text" id="enrollPhone" class="form-control" placeholder="+1 234 567 890">
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Submit Enrollment</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== Notification Toast ===== -->
+    <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 1055">
+        <div id="toastBox" class="toast align-items-center text-bg-success border-0" role="alert" aria-live="assertive"
+            aria-atomic="true">
+            <div class="d-flex">
+                <div class="toast-body" id="toastMsg">Action completed successfully.</div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+            </div>
+        </div>
+    </div>
+    <!-- Scroll Buttons -->
+    <button id="scrollTopBtn" class="scroll-btn rounded-circle"><i class="fa-solid fa-arrow-up"></i></button>
+    <button id="scrollDownBtn" class="scroll-btn rounded-circle"><i class="fa-solid fa-arrow-down"></i></button>
+    <!-- ====== Dark Mode Button ====== -->
+    <button id="darkModeToggle" class="dark-mode-btn rounded-circle">
+        <i class="fa-solid fa-moon"></i>
+    </button>
+    <script>
+        const courses = [
+            {
+                id: 1,
+                title: 'Full Stack Web Development',
+                category: 'programming',
+                desc: `Master modern web technologies by learning front-end and back-end development. This course covers HTML, CSS, JavaScript, React, Node.js, Express, and MongoDB. You’ll build complete real-world applications from scratch.`,
+                skills: ['HTML', 'CSS', 'JavaScript', 'React', 'Node.js', 'Express', 'MongoDB', 'API Design'],
+                instructor: 'John Smith',
+                prerequisites: 'Basic computer skills; no prior programming experience required.',
+                price: '$299',
+                duration: '12 weeks (5 hours/week)',
+                certificate: true,
+                date: '2025-01-10',
+                location: 'Online',
+                image: './assets/img/1-1.jpeg'
+            },
+            {
+                id: 2,
+                title: 'Python Programming',
+                category: 'programming',
+                desc: `An in-depth introduction to Python, focusing on problem solving, data structures, and automation. Students will also learn the fundamentals of data analysis and scripting.`,
+                skills: ['Python', 'Problem Solving', 'Data Structures', 'Automation', 'Pandas'],
+                instructor: 'Emily Brown',
+                prerequisites: 'None. Ideal for beginners.',
+                price: '$199',
+                duration: '8 weeks (3 hours/week)',
+                certificate: true,
+                date: '2025-02-15',
+                location: 'London',
+                image: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c'
+            },
+            {
+                id: 3,
+                title: 'Graphic Design Essentials',
+                category: 'design',
+                desc: `Learn the core principles of design, including color theory, typography, and composition. This course teaches you how to use Adobe Photoshop and Illustrator effectively.`,
+                skills: ['Adobe Photoshop', 'Illustrator', 'Typography', 'Color Theory', 'Layout Design'],
+                instructor: 'Sophia Green',
+                prerequisites: 'Basic computer knowledge.',
+                price: '$179',
+                duration: '6 weeks (4 hours/week)',
+                certificate: true,
+                date: '2025-03-05',
+                location: 'Paris',
+                image: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c'
+            },
+            {
+                id: 4,
+                title: 'UI/UX Design Masterclass',
+                category: 'design',
+                desc: `Design user-centered interfaces using Figma and other modern tools. Learn user research, prototyping, wireframing, and usability testing.`,
+                skills: ['Figma', 'Prototyping', 'Wireframing', 'User Research', 'Usability Testing'],
+                instructor: 'Daniel Lee',
+                prerequisites: 'Basic graphic design knowledge recommended.',
+                price: '$249',
+                duration: '10 weeks (4 hours/week)',
+                certificate: true,
+                date: '2025-04-22',
+                location: 'Online',
+                image: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c'
+            },
+            {
+                id: 5,
+                title: 'Startup Fundamentals',
+                category: 'business',
+                desc: `A complete guide for aspiring entrepreneurs to start and grow a successful startup. Topics include idea validation, funding, business models, and pitching.`,
+                skills: ['Business Planning', 'Pitching', 'Market Research', 'Financial Basics'],
+                instructor: 'Michael Johnson',
+                prerequisites: 'Interest in entrepreneurship.',
+                price: '$259',
+                duration: '8 weeks (4 hours/week)',
+                certificate: true,
+                date: '2025-05-12',
+                location: 'New York',
+                image: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4'
+            },
+            {
+                id: 6,
+                title: 'Digital Marketing',
+                category: 'business',
+                desc: `Learn to promote brands using SEO, Google Ads, and social media campaigns. Build a strong digital presence with data-driven strategies.`,
+                skills: ['SEO', 'Google Ads', 'Content Marketing', 'Social Media Strategy'],
+                instructor: 'Laura Adams',
+                prerequisites: 'Basic computer literacy.',
+                price: '$229',
+                duration: '7 weeks (3 hours/week)',
+                certificate: true,
+                date: '2025-06-18',
+                location: 'Paris',
+                image: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4'
+            },
+            {
+                id: 7,
+                title: 'English for Beginners',
+                category: 'languages',
+                desc: `Develop your English speaking, listening, reading, and writing skills through interactive lessons and real-world practice.`,
+                skills: ['Grammar', 'Conversation', 'Listening', 'Writing'],
+                instructor: 'Sarah Wilson',
+                prerequisites: 'None. Suitable for complete beginners.',
+                price: '$99',
+                duration: '10 weeks (3 hours/week)',
+                certificate: true,
+                date: '2025-07-03',
+                location: 'Online',
+                image: 'https://images.unsplash.com/photo-1596495577886-d920f1fb7238'
+            },
+            {
+                id: 8,
+                title: 'French Basics',
+                category: 'languages',
+                desc: `Start your journey into the French language with practical vocabulary, pronunciation, and conversation essentials.`,
+                skills: ['Vocabulary', 'Speaking', 'Listening', 'Reading Comprehension'],
+                instructor: 'Pierre Laurent',
+                prerequisites: 'None.',
+                price: '$119',
+                duration: '9 weeks (3 hours/week)',
+                certificate: true,
+                date: '2025-08-20',
+                location: 'London',
+                image: 'https://images.unsplash.com/photo-1596495577886-d920f1fb7238'
+            },
+            {
+                id: 9,
+                title: 'Mastering C++',
+                category: 'programming',
+                desc: `Deep dive into C++ programming, focusing on OOP, algorithms, and memory management. Ideal for students preparing for software engineering careers.`,
+                skills: ['C++', 'OOP', 'Data Structures', 'Algorithms', 'Debugging'],
+                instructor: 'Mark Davis',
+                prerequisites: 'Basic programming knowledge recommended.',
+                price: '$239',
+                duration: '10 weeks (4 hours/week)',
+                certificate: true,
+                date: '2025-09-10',
+                location: 'New York',
+                image: 'https://images.unsplash.com/photo-1596495577886-d920f1fb7238'
+            },
+            {
+                id: 10,
+                title: 'Leadership Skills',
+                category: 'business',
+                desc: `Develop strong communication, motivation, and decision-making skills to become an effective leader in any organization.`,
+                skills: ['Communication', 'Team Management', 'Motivation', 'Emotional Intelligence'],
+                instructor: 'Anna Roberts',
+                prerequisites: 'No prior management experience required.',
+                price: '$189',
+                duration: '6 weeks (2 hours/week)',
+                certificate: true,
+                date: '2025-10-01',
+                location: 'Online',
+                image: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d'
+            },
+            {
+                id: 11,
+                title: 'Motion Graphics',
+                category: 'design',
+                desc: `Create stunning animated visuals using Adobe After Effects. Perfect for designers looking to expand into motion design.`,
+                skills: ['After Effects', 'Animation', 'Storyboarding', 'Timing & Transitions'],
+                instructor: 'Olivia White',
+                prerequisites: 'Basic knowledge of graphic design tools.',
+                price: '$249',
+                duration: '8 weeks (5 hours/week)',
+                certificate: true,
+                date: '2025-11-15',
+                location: 'Paris',
+                image: './assets/img/1-1.jpeg'
+            },
+            {
+                id: 12,
+                title: 'Spanish Language',
+                category: 'languages',
+                desc: `Learn to speak Spanish confidently through immersive listening and conversation practice focused on everyday scenarios.`,
+                skills: ['Speaking', 'Listening', 'Grammar', 'Pronunciation'],
+                instructor: 'Carlos Rivera',
+                prerequisites: 'None.',
+                price: '$139',
+                duration: '10 weeks (3 hours/week)',
+                certificate: true,
+                date: '2025-12-08',
+                location: 'New York',
+                image: 'https://images.unsplash.com/photo-1607746882042-944635dfe10e'
+            }
+        ];
+
+        const params = new URLSearchParams(window.location.search);
+        const id = parseInt(params.get("id"));
+        const course = courses.find(c => c.id === id);
+
+        const courseDetails = document.getElementById("courseDetails");
+
+        if (!course) {
+            courseDetails.innerHTML = `<div class="alert alert-danger text-center">Course not found.</div>`;
+        } else {
+            const related = courses.filter(c => c.category === course.category && c.id !== course.id).slice(0, 3);
+
+            courseDetails.innerHTML = `
+        <div class="row g-4">
+            <!-- Course Image -->
+            <div class="col-lg-7">
+                <div class="course-hero shadow-sm">
+                    <img src="${course.image}" alt="${course.title}" class="w-100 rounded-4">
+                </div>
+            </div>
+
+            <!-- Course Info -->
+            <div class="col-lg-5">
+                <h2 class="fw-bold">${course.title}</h2>
+                <span class="badge bg-${getCategoryColor(course.category)} mb-3 text-capitalize">${course.category}</span>
+                <p><i class="fa-regular fa-calendar me-2"></i>${course.date}</p>
+                <p><i class="fa-solid fa-location-dot me-2"></i>${course.location}</p>
+
+                <p class="text-muted mb-3">${course.desc}</p>
+
+                <ul class="list-unstyled small mb-4">
+                    <li><i class="fa-solid fa-user-tie me-2 text-primary"></i><strong>Instructor:</strong> ${course.instructor}</li>
+                    <li><i class="fa-solid fa-clock me-2 text-success"></i><strong>Duration:</strong> ${course.duration}</li>
+                    <li><i class="fa-solid fa-certificate me-2 text-warning"></i><strong>Certificate:</strong> ${course.certificate ? "Included" : "Not Included"}</li>
+                    <li><i class="fa-solid fa-list-check me-2 text-info"></i><strong>Prerequisites:</strong> ${course.prerequisites}</li>
+                </ul>
+
+                <h4 class="fw-bold text-primary mb-3">Price: ${course.price}</h4>
+
+                <div class="mt-3">
+                    <button class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#enrollModal">
+                        <i class="fa-solid fa-user-plus me-1"></i>Enroll Now
+                    </button>
+                    <button class="btn btn-outline-primary me-2" onclick="addToCalendar()">
+                        <i class="fa-regular fa-calendar-plus me-1"></i>Add to Calendar
+                    </button>
+                    <!-- Share Button Dropdown -->
+                    <div class="dropdown d-inline-block">
+                    <button class="btn btn-outline-success dropdown-toggle" type="button" id="shareDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fa-solid fa-share-nodes me-1"></i>Share
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="shareDropdown">
+                        <li><a class="dropdown-item" href="#" id="shareSystem"><i class="fa-solid fa-mobile-screen me-2"></i>Share via Device</a></li>
+                        <li><a class="dropdown-item" href="#" id="shareWhatsapp"><i class="fa-brands fa-whatsapp me-2 text-success"></i>WhatsApp</a></li>
+                        <li><a class="dropdown-item" href="#" id="shareTelegram"><i class="fa-brands fa-telegram me-2 text-primary"></i>Telegram</a></li>
+                        <li><a class="dropdown-item" href="#" id="shareFacebook"><i class="fa-brands fa-facebook me-2 text-primary"></i>Facebook</a></li>
+                        <li><a class="dropdown-item" href="#" id="shareX"><i class="fa-brands fa-x-twitter me-2"></i>X (Twitter)</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#" id="copyLink"><i class="fa-regular fa-copy me-2"></i>Copy Link</a></li>
+                    </ul>
+                    </div>
+
+                <!-- Alert Container -->
+                        <div id="alertContainer" class="position-fixed bottom-0 end-0 p-3" style="z-index: 1055;"></div>
+                        </div>
+                    </div>
+                </div>
+
+        <!-- Skills Section -->
+        <div class="mt-5">
+            <h4 class="fw-bold mb-3">Skills You’ll Learn</h4>
+            <div class="d-flex flex-wrap gap-2">
+                ${course.skills.map(skill => `<span class="badge bg-light text-dark border">${skill}</span>`).join('')}
+            </div>
+        </div>
+
+        <!-- Map -->
+        <div class="map-container mt-5">
+            <h4 class="fw-bold mb-3">Course Location</h4>
+            <iframe 
+                src="https://www.google.com/maps?q=${encodeURIComponent(course.location)}&output=embed"
+                allowfullscreen="" loading="lazy">
+            </iframe>
+        </div>
+
+        <!-- Gallery -->
+        <div class="course-gallery mt-5">
+            <h4 class="fw-bold mb-3">Course Gallery</h4>
+            <div class="row g-3">
+                <div class="col-md-4"><img src="${course.image}" class="w-100 rounded" alt=""></div>
+                <div class="col-md-4"><img src="https://source.unsplash.com/random/400x300?education" class="w-100 rounded" alt=""></div>
+                <div class="col-md-4"><img src="https://source.unsplash.com/random/400x300?learning" class="w-100 rounded" alt=""></div>
+            </div>
+        </div>
+
+        <!-- Related Courses -->
+        <div class="mt-5">
+            <h4 class="fw-bold mb-3">Related Courses</h4>
+            <div class="row g-3">
+                ${related.map(r => `
+                    <div class="col-md-4">
+                        <div class="card related-card shadow-sm h-100">
+                            <img src="${r.image}" class="card-img-top" alt="${r.title}">
+                            <div class="card-body">
+                                <h6 class="card-title">${r.title}</h6>
+                                <p class="small text-muted">${r.desc.slice(0, 80)}...</p>
+                                <a href="course.html?id=${r.id}" class="btn btn-outline-primary btn-sm">View</a>
+                            </div>
+                        </div>
+                    </div>
+                `).join("")}
+            </div>
+        </div>
+    `;
+        }
+
+        /* Utility: color-coded badge for each category */
+        function getCategoryColor(cat) {
+            switch (cat) {
+                case 'programming': return 'primary';
+                case 'design': return 'pink';
+                case 'business': return 'warning';
+                case 'languages': return 'success';
+                default: return 'secondary';
+            }
+        }
+
+    </script>
+    <script>
+        // ===== Modal Form Validation =====
+        const enrollForm = document.getElementById("enrollForm");
+        const alertBox = document.getElementById("alertBox");
+
+
+        // Enhanced form validation
+        function validateForm(name, email, phone) {
+            // Remove leading/trailing spaces
+            name = name.trim();
+            email = email.trim();
+            phone = phone.trim();
+
+            // Validate name: only letters, at least 2 words, each ≥ 2 letters
+            const nameRegex = /^[A-Za-z]{2,}(?:\s[A-Za-z]{2,})+$/;
+            if (!nameRegex.test(name)) {
+                showAlert(
+                    "Name must contain only letters and at least two words (each with 2 or more letters). Example: John Doe.",
+                    "warning"
+                );
+                return false;
+            }
+
+            // Validate email: standard professional email format
+            const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+            if (!emailRegex.test(email)) {
+                showAlert("Please enter a valid email address (e.g., name@example.com).", "warning");
+                return false;
+            }
+
+            // Validate Syrian phone number
+            // Allowed formats:
+            // - Local: 09[4-5-6]XXXXXXX (MTN) or 09[8-9-3]XXXXXXX (Syriatel)
+            // - International: +9639[4-5-6]XXXXXXX (MTN) or +9639[8-9-3]XXXXXXX (Syriatel)
+            const syrianRegex = /^(?:09[4-6]\d{7}|09[389]\d{7}|\+9639[4-6]\d{7}|\+9639[389]\d{7})$/;
+            console.log(syrianRegex.test(phone))
+            if (!syrianRegex.test(phone)) {
+                // More specific error feedback
+                if (phone.startsWith("+") && !phone.startsWith("+963")) {
+                    showAlert("Only Syrian numbers are allowed (must start with +963).", "danger");
+                } else if (phone.startsWith("09") || phone.startsWith("+9639")) {
+                    showAlert(
+                        "Invalid Syrian number. Allowed prefixes: MTN (094–096) or Syriatel (098–099–093).",
+                        "danger"
+                    );
+                } else {
+                    showAlert("Please enter a valid Syrian phone number.", "danger");
+                }
+                return false;
+            }
+
+            // If everything is OK
+            return true;
+        }
+
+
+        enrollForm.addEventListener("submit", function (e) {
+            e.preventDefault();
+            alertBox.innerHTML = ""; // clear old alert
+
+            const name = document.getElementById("enrollName").value.trim();
+            const email = document.getElementById("enrollEmail").value.trim();
+            const phone = document.getElementById("enrollPhone").value.trim();
+
+            if (!validateForm(name, email, phone)) return;
+
+            showAlert("Enrollment submitted successfully!", "success");
+            enrollForm.reset();
+
+            setTimeout(() => {
+                const modal = bootstrap.Modal.getInstance(document.getElementById("enrollModal"));
+                modal.hide();
+            }, 1500);
+        });
+
+        function showAlert(message, type) {
+            alertBox.innerHTML = `
+      <div class="alert alert-${type} alert-dismissible fade show" role="alert">
+        ${message}
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+      </div>`;
+        }
+
+        // ===== Add to Calendar (Fake Action) =====
+        function addToCalendar() {
+            showToast("Course has been added to your calendar!");
+        }
+
+
+        // ===== Toast Notification =====
+        function showToast(msg, type = "success") {
+            const toastEl = document.getElementById("toastBox");
+            const toastMsg = document.getElementById("toastMsg");
+            toastMsg.textContent = msg;
+            toastEl.className = `toast align-items-center text-bg-${type} border-0`;
+            const toast = new bootstrap.Toast(toastEl);
+            toast.show();
+        }
+    </script>
+    <script>
+        function showAlert(message, type = "info") {
+            const container = document.getElementById("alertContainer");
+            const alert = document.createElement("div");
+            alert.className = `alert alert-${type} alert-dismissible fade show shadow-sm`;
+            alert.innerHTML = `
+      ${message}
+      <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    `;
+            container.appendChild(alert);
+            setTimeout(() => alert.remove(), 4000);
+        }
+
+        const pageUrl = encodeURIComponent(window.location.href);
+        const pageTitle = encodeURIComponent(document.title);
+
+        // ===== Direct Device Share (Web Share API) =====
+        document.getElementById("shareSystem").addEventListener("click", async (e) => {
+            e.preventDefault();
+            const shareData = {
+                title: document.title,
+                text: "Check out this course!",
+                url: window.location.href
+            };
+            if (navigator.share) {
+                try {
+                    await navigator.share(shareData);
+                    showAlert("Link shared successfully!", "success");
+                } catch {
+                    showAlert("Share canceled.", "secondary");
+                }
+            } else {
+                showAlert("Your browser doesn't support direct sharing.", "warning");
+            }
+        });
+
+        // ===== Platform-Specific Sharing =====
+        document.getElementById("shareWhatsapp").addEventListener("click", (e) => {
+            e.preventDefault();
+            window.open(`https://wa.me/?text=Check%20this%20out:%20${pageUrl}`, "_blank");
+        });
+
+        document.getElementById("shareTelegram").addEventListener("click", (e) => {
+            e.preventDefault();
+            window.open(`https://t.me/share/url?url=${pageUrl}&text=Check%20this%20out!`, "_blank");
+        });
+
+        document.getElementById("shareFacebook").addEventListener("click", (e) => {
+            e.preventDefault();
+            window.open(`https://www.facebook.com/sharer/sharer.php?u=${pageUrl}`, "_blank");
+        });
+
+        document.getElementById("shareX").addEventListener("click", (e) => {
+            e.preventDefault();
+            window.open(`https://twitter.com/intent/tweet?url=${pageUrl}&text=Check%20this%20out!`, "_blank");
+        });
+
+        // ===== Copy Link =====
+        document.getElementById("copyLink").addEventListener("click", async (e) => {
+            e.preventDefault();
+            try {
+                await navigator.clipboard.writeText(window.location.href);
+                showAlert("Link copied to clipboard!", "success");
+            } catch {
+                showAlert("Failed to copy link.", "danger");
+            }
+        });
+    </script>
+    <script>
+        const scrollTopBtn = document.getElementById("scrollTopBtn");
+        const scrollDownBtn = document.getElementById("scrollDownBtn");
+
+        // ===== Smooth scroll function =====
+        function smoothScroll(to) {
+            window.scrollTo({
+                top: to,
+                behavior: "smooth"
+            });
+        }
+
+        // ===== Show/Hide Buttons =====
+        window.addEventListener("scroll", () => {
+            if (window.scrollY > 200) {
+                scrollTopBtn.style.display = "block";
+            } else {
+                scrollTopBtn.style.display = "none";
+            }
+
+            if (window.innerHeight + window.scrollY < document.body.offsetHeight - 200) {
+                scrollDownBtn.style.display = "block";
+            } else {
+                scrollDownBtn.style.display = "none";
+            }
+        });
+
+        // ===== Scroll Up =====
+        scrollTopBtn.addEventListener("click", () => {
+            smoothScroll(0);
+        });
+
+        // ===== Scroll Down =====
+        scrollDownBtn.addEventListener("click", () => {
+            smoothScroll(document.body.scrollHeight);
+        });
+    </script>
+
+
+    <script>
+        const toggleBtn = document.getElementById("darkModeToggle");
+        const icon = toggleBtn.querySelector("i");
+
+        // Load saved preference
+        const savedMode = localStorage.getItem("darkMode");
+        if (savedMode === "enabled") {
+            document.body.classList.add("dark-mode");
+            icon.classList.replace("fa-moon", "fa-sun");
+        }
+
+        toggleBtn.addEventListener("click", () => {
+            document.body.classList.toggle("dark-mode");
+
+            const isDark = document.body.classList.contains("dark-mode");
+            if (isDark) {
+                icon.classList.replace("fa-moon", "fa-sun");
+                localStorage.setItem("darkMode", "enabled");
+            } else {
+                icon.classList.replace("fa-sun", "fa-moon");
+                localStorage.setItem("darkMode", "disabled");
+            }
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,66 @@
+body {
+  font-family: "Cairo", sans-serif;
+  background: linear-gradient(135deg, #f9fafc, #eef2f7);
+}
+
+/* Navbar */
+.navbar {
+  background: linear-gradient(90deg, #0056b3, #007bff);
+}
+
+/* Category Cards */
+.category-card {
+  background: #fff;
+  transition: all 0.3s ease;
+}
+.category-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Courses Grid */
+.course-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+.course-card {
+  background: #fff;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s;
+}
+.course-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+.course-card:hover {
+  transform: scale(1.02);
+}
+
+.team-card {
+  transition: all 0.3s ease;
+  background: linear-gradient(180deg, #ffffff, #f9f9f9);
+}
+.team-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+.team-card img {
+  object-fit: cover;
+  border: 3px solid var(--bs-primary);
+  transition: transform 0.3s ease;
+}
+.team-card:hover img {
+  transform: scale(1.1);
+}
+
+/* Footer */
+footer {
+  background: linear-gradient(90deg, #003973, #0056b3);
+}
+footer a:hover {
+  color: #ffd43b !important;
+}
